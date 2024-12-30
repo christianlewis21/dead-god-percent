@@ -109,3 +109,18 @@ ul {
     width: 40%;
     z-index: 10;
 }
+
+.discordlink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.githublink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
