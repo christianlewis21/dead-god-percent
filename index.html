@@ -7,18 +7,21 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="header"></div>
-        <div class="middle">
-            <div class="button" ><a href="speedrun.html" class="buttontext">Speedrun</a></div>
-            <div class="button"><label class="buttontext" for="myFile">Choose File</label></div>
-            <input type="file" id="myFile" style="display: none;" accept=".dat" onchange="readData(event)"></input>
-            <div class="button"><a href="tips.html" class="buttontext">Tips</a></div>
-        </div>
-        <div class="footer">
-            <ul class="links">
-                <li><a href="https://github.com/christianlewis21/dead-god-percent" class="footertext">Github</a></li>
-            </ul>
-        </div>
-        <script src="script.js" defer></script>
+        <section class="showcase">
+            <div class="header"></div>
+            <video src="pictures/background.mov" muted loop autoplay></video>
+            <div class="middle">
+                <div class="button" ><a href="speedrun.html" class="buttontext">Speedrun</a></div>
+                <div class="button"><label class="buttontext" for="myFile">Choose File</label></div>
+                <input type="file" id="myFile" style="display: none;" accept=".dat" onchange="readData(event)"></input>
+                <div class="button"><a href="tips.html" class="buttontext">Tips</a></div>
+            </div>
+            <div class="footer">
+                <ul class="links">
+                    <li><a href="https://github.com/christianlewis21/dead-god-percent" class="footertext">Github</a></li>
+                </ul>
+            </div>
+            <script src="script.js" defer></script>
+        </section>
     </body>
 </html>

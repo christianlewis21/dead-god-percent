@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-    background-image: url("pictures/basement.jpg");
+    background-image: url("pictures/background.mov");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,6 +68,15 @@ body {
     
 }
 
+.showcase video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1
+}
 ul {
     display: flex;
     list-style: none;
