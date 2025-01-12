@@ -1,17 +1,40 @@
-function readData(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+document.addEventListener("DOMContentLoaded", function() {
+    const fileInput = document.getElementById('myFile');
 
-    reader.onload = function (e) {
-        const fileContent = e.target.result;
-        console.log("Binary content:", fileContent);
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file && file.name.endsWith('.dat')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const arrayBuffer = e.target.result;
+                const dataView = new DataView(arrayBuffer);
+                const processedData = processBinaryData(dataView);
+                console.log("Processed Data:", processedData);
+                localStorage.setItem("processedData", processedData);
+                console.log("Data stored in localStorage");
+                window.location.href = 'analyzer.html';
+            };
+            reader.readAsArrayBuffer(file);
+        } else {
+            alert('Please select a valid .dat file.');
+        }
+    });
 
-        const textContent = new TextDecoder().decode(fileContent);
-
-        localStorage.setItem("processedData", textContent);
-
-        window.location.href = "analyzer.html";
-    };
-
-    reader.readAsArrayBuffer(file);
-}
+    function processBinaryData(dataView) {
+        let output = '';
+        for (let i = 0; i < dataView.byteLength; i += 4) {
+            if (i + 4 <= dataView.byteLength) {
+                const value = dataView.getInt32(i, true);
+                output += `Byte ${i}: ${value}\n`;
+            } else {
+                const remainingBytes = dataView.byteLength - i;
+                let value = 0;
+                for (let j = 0; j < remainingBytes; j++) {
+                    value |= dataView.getUint8(i + j) << (j * 8);
+                }
+                output += `Byte ${i} (remaining ${remainingBytes} bytes): ${value}\n`;
+            }
+        }
+        return output;
+    }
+});
