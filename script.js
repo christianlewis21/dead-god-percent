@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
             reader.readAsArrayBuffer(file);
         } else {
-            alert('Please select a valid .dat file.');
+            alert('File is not a valid save file. A valid save file can be found at C:\\Program Files(x86)\\Steam\\userdata\\[SteamID]\\250900\\remote\\rep+persistentgamedata[1,2,3].dat');
         }
     });
 
