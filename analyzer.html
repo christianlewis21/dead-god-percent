@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyzer</title>
-    <link rel="stylesheet" href="analyzerstyles.css">
+    <link rel="stylesheet" href="analyzerstyles.css" id="stylesheet">
 </head>
 <body>
     <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
-    <div><img src="pictures/refs/marks/paper.png"/></div>
+    <input type="checkbox" id="viewtoggle" checked></input>
+    <label for="viewtoggle">Advanced View</label><br>
 
-    <h1>File Content:</h1>
     <pre id="fileContent"></pre>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const data = localStorage.getItem("processedData");
-            if (data) {
-                document.getElementById("fileContent").textContent = data;
+        const viewtoggle = document.getElementById("viewtoggle");
+        const stylesheet = document.getElementById("stylesheet");
+
+        viewtoggle.addEventListener("click", function() {
+            if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
+                stylesheet.setAttribute("href", "simple.css");
+                const data = localStorage.getItem("processedData");
+                if (data) {
+                    document.getElementById("fileContent").textContent = data;
+                }
+            } else {
+                stylesheet.setAttribute("href", "analyzerstyles.css");
+                fileContent.textContent = '';
             }
         });
     </script>
