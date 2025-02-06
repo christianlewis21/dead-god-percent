@@ -10,22 +10,95 @@
     <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
     <input type="checkbox" id="viewtoggle" checked></input>
     <label for="viewtoggle">Advanced View</label><br>
+    <div class="charactersheets" id="advancedgraphics">
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/001isaac.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/002magdalene.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/003cain.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/004judas.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/005bluebaby.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/006eve.png">
+        </div>
+
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/007samson.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/008azazel.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/009lazarus.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/010eden.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/011Tlost.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/012Tlilith.png">
+        </div>
+
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/013Tkeeper.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/014Tapollyon.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/015Tforgotten.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/016bethany.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='character' src="pictures/refs/characters/017jacob.png">
+        </div>
+    </div>
 
     <pre id="fileContent"></pre>
     <script>
         const viewtoggle = document.getElementById("viewtoggle");
         const stylesheet = document.getElementById("stylesheet");
-
+        const advancedgraphics = document.getElementById("advancedgraphics");
         viewtoggle.addEventListener("click", function() {
             if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
                 stylesheet.setAttribute("href", "simple.css");
+                advancedgraphics.remove()
                 const data = localStorage.getItem("processedData");
-                if (data) {
-                    document.getElementById("fileContent").textContent = data;
-                }
+                document.getElementById("fileContent").textContent = data;
+
             } else {
                 stylesheet.setAttribute("href", "analyzerstyles.css");
                 fileContent.textContent = '';
+                document.body.appendChild(advancedgraphics);
             }
         });
     </script>

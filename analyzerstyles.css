@@ -44,3 +44,38 @@ p {
     text-decoration: none;
     text-align: center;
 }
+
+.charactersheets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width:auto
+    
+}
+
+.completion {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.character {
+    position: absolute;
+    z-index: 2;
+    height:50%;
+    width: auto;
+    left: 10px;
+    top: 150px;
+}
+
+.sheet {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
