@@ -10,6 +10,10 @@
     <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
     <input type="checkbox" id="viewtoggle" checked></input>
     <label for="viewtoggle">Advanced View</label><br>
+
+    <input type="checkbox" id="taintedtoggle" checked></input>
+    <label for="taintedtoggle">View Tainted Progress</label><br>
+
     <div class="charactersheets" id="advancedgraphics">
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
@@ -83,15 +87,93 @@
         </div>
     </div>
 
+
+    <div class="charactersheets" id="taintedgraphics">
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/001Tisaac.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/002Tmagdalene.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/003Tcain.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/004Tjudas.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/005Tbluebaby.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/006Teve.png">
+        </div>
+
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/007Tsamson.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/008Tazazel.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/009Tlazarus.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/010Teden.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/011Tlost.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/012Tlilith.png">
+        </div>
+
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/013Tkeeper.png">
+        </div>
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/014Tapollyon.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/015Tforgotten.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/016Tbethany.png">
+        </div> 
+        <div class="completion">
+            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='character' src="pictures/refs/characters/017Tjacob.png">
+        </div>
+    </div>
+
     <pre id="fileContent"></pre>
     <script>
         const viewtoggle = document.getElementById("viewtoggle");
+        const taintedtoggle = document.getElementById("taintedtoggle");
         const stylesheet = document.getElementById("stylesheet");
         const advancedgraphics = document.getElementById("advancedgraphics");
+        const taintedgraphics = document.getElementById("taintedgraphics");
+
         viewtoggle.addEventListener("click", function() {
             if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
                 stylesheet.setAttribute("href", "simple.css");
                 advancedgraphics.remove()
+                taintedgraphics.remove()
                 const data = localStorage.getItem("processedData");
                 if (data) {
                     document.getElementById("fileContent").textContent = data;
@@ -101,6 +183,17 @@
                 stylesheet.setAttribute("href", "analyzerstyles.css");
                 fileContent.textContent = '';
                 document.body.appendChild(advancedgraphics);
+                taintedgraphics.remove()
+            }
+        });
+
+        taintedtoggle.addEventListener('click', function() {
+            if (document.body.contains(advancedgraphics)) {
+                advancedgraphics.remove()
+                document.body.appendChild(taintedgraphics)
+            } else {
+                taintedgraphics.remove()
+                document.body.appendChild(advancedgraphics)
             }
         });
     </script>
