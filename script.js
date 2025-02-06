@@ -19,9 +19,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 for (let position = 0x21; position <= 0x2A0; position++) {
                     const booleanValue = readHexPosition(dataView, position);
                     if (!booleanValue) {
-                        const achievementPosition = position-32;
-                        const text = positionTextMap[achievementPosition];
-                        output += `${text}\n`;
+                        const achievementPosition = position - 32;
+                        const text = positionTextMap[achievementPosition.toString()];
+                        if (typeof text === 'string') {
+                            output += `${text}\n`;
+                        } else if (typeof text === 'object') {
+                            output += `${JSON.stringify(text)}\n`;
+                        } else {
+                            output += `No text for position ${achievementPosition}\n`;
+                        }
                     }
                 }
                 localStorage.setItem("processedData", output);
