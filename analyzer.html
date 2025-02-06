@@ -54,24 +54,24 @@
         </div> 
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
-            <img class='character' src="pictures/refs/characters/011Tlost.png">
+            <img class='character' src="pictures/refs/characters/011lost.png">
         </div>
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
-            <img class='character' src="pictures/refs/characters/012Tlilith.png">
+            <img class='character' src="pictures/refs/characters/012lilith.png">
         </div>
 
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
-            <img class='character' src="pictures/refs/characters/013Tkeeper.png">
+            <img class='character' src="pictures/refs/characters/013keeper.png">
         </div>
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
-            <img class='character' src="pictures/refs/characters/014Tapollyon.png">
+            <img class='character' src="pictures/refs/characters/014apollyon.png">
         </div> 
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
-            <img class='character' src="pictures/refs/characters/015Tforgotten.png">
+            <img class='character' src="pictures/refs/characters/015forgotten.png">
         </div> 
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
@@ -84,23 +84,6 @@
     </div>
 
     <pre id="fileContent"></pre>
-    <script>
-        const viewtoggle = document.getElementById("viewtoggle");
-        const stylesheet = document.getElementById("stylesheet");
-        const advancedgraphics = document.getElementById("advancedgraphics");
-        viewtoggle.addEventListener("click", function() {
-            if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
-                stylesheet.setAttribute("href", "simple.css");
-                advancedgraphics.remove()
-                const data = localStorage.getItem("processedData");
-                document.getElementById("fileContent").textContent = data;
-
-            } else {
-                stylesheet.setAttribute("href", "analyzerstyles.css");
-                fileContent.textContent = '';
-                document.body.appendChild(advancedgraphics);
-            }
-        });
-    </script>
+    <script src="analyzerscript.js"></script>
 </body>
 </html>
