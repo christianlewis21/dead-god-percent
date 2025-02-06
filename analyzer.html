@@ -93,7 +93,9 @@
                 stylesheet.setAttribute("href", "simple.css");
                 advancedgraphics.remove()
                 const data = localStorage.getItem("processedData");
-                document.getElementById("fileContent").textContent = data;
+                if (data) {
+                    document.getElementById("fileContent").textContent = data;
+                }
 
             } else {
                 stylesheet.setAttribute("href", "analyzerstyles.css");
