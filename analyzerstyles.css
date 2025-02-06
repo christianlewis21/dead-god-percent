@@ -79,3 +79,16 @@ p {
     width: 100%;
     align-items: center;
 }
+
+.mark {
+    position: absolute;
+    z-index: 2;
+    height:15%;
+    width: auto;
+    left: 80px;
+    top: 20px;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}

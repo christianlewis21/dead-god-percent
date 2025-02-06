@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const fileInput = document.getElementById('myFile');
     let positionTextMap = {};
-
+    let positionBooleanMap = {};
     fetch('achievements.json')
         .then(response => response.json())
         .then(data => {
@@ -18,8 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 let output = '';
                 for (let position = 0x21; position <= 0x2A0; position++) {
                     const booleanValue = readHexPosition(dataView, position);
+                    const achievementPosition = position - 32;
+                    positionBooleanMap[achievementPosition] = booleanValue;
                     if (!booleanValue) {
-                        const achievementPosition = position - 32;
                         const text = positionTextMap[achievementPosition.toString()];
                         if (typeof text === 'string') {
                             output += `${text}\n`;
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
                 localStorage.setItem("processedData", output);
+                localStorage.setItem("positionBooleanMap", JSON.stringify(positionBooleanMap));
                 window.location.href = 'analyzer.html';
             };
             reader.readAsArrayBuffer(file);
