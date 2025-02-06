@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyzer</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="analyzerstyles.css">
 </head>
 <body>
     <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
+    <div><img src="pictures/refs/marks/paper.png"/></div>
+
     <h1>File Content:</h1>
     <pre id="fileContent"></pre>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const data = localStorage.getItem("processedData");
             if (data) {
                 document.getElementById("fileContent").textContent = data;
-            } else {
-                document.getElementById("fileContent").textContent = 'No data available. Please process a file on the main page.';
             }
         });
     </script>
