@@ -124,3 +124,6 @@ ul {
     gap: 10px;
 }
 
+.warning {
+    color: red !important;
+}
