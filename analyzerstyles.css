@@ -92,3 +92,14 @@ p {
 .grayscale {
     filter: grayscale(100%);
 }
+
+.hoverbox {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px inset rgb(107, 107, 107);
+    padding: 10px;
+    z-index: 3;
+    top:25%;
+    left: 5%;
+}
