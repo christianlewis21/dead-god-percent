@@ -98,7 +98,7 @@ function generateCharacterSheets() {
             <img class='sheet' src="pictures/refs/marks/paper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
-                <img class='mark mark-${mark.id}' id='mark-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
+                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>
     `).join('');
@@ -108,7 +108,7 @@ function generateCharacterSheets() {
             <img class='sheet' src="pictures/refs/marks/Tpaper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
-                <img class='mark mark-${mark.id}' id='mark-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
+                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>
     `).join('');
@@ -126,14 +126,27 @@ function checkCharacterUnlocks(positionBooleanMap) {
         '481': 'character-25', '482': 'character-26', '483': 'character-27', '484': 'character-28', '485': 'character-29', '486': 'character-30',
         '487': 'character-31', '488': 'character-32', '489': 'character-33', '490': 'character-34'
     };
-
     for (const [position, characterId] of Object.entries(characterMap)) {
         if (positionBooleanMap[position] === false) {
             document.getElementById(characterId).classList.add('grayscale');
         }
     }
-}
 
-function checkCharacterMarks() {
-    
+    const markMaps = {
+        1: { /* Isaac */
+            '167': 'mark-1-1', '106': 'mark-1-2', '43': 'mark-1-3', '49': 'mark-1-4', '149': 'mark-1-5', '205': 'mark-1-6', '70': 'mark-1-7', '179': 'mark-1-8', '440': 'mark-1-9', '441': 'mark-1-10', '296': 'mark-1-11'
+        },
+        2: { /* Maggy */
+            '168': 'mark-2-1', '': 'mark-2-2', '': 'mark-2-3', '': 'mark-2-4', '': 'mark-2-5', '': 'mark-2-6', '': 'mark-2-7', '': 'mark-2-8', '': 'mark-2-9', '': 'mark-2-10', '': 'mark-2-11'
+        },
+        // Add other characters' mark maps here
+    }
+    for (let i = 1; i <= 2; i++) {
+        for (const [position, markId] of Object.entries(markMaps[i])) {
+            if (positionBooleanMap[position] === false) {
+                document.getElementById(markId).classList.add('grayscale');
+            }
+        }        
+    }
+
 }
