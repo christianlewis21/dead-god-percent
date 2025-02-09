@@ -11,8 +11,33 @@ document.addEventListener("DOMContentLoaded", function() {
     generateCharacterSheets();
     checkCharacterUnlocks(positionBooleanMap)
     taintedgraphics.remove()
-});
+    
+    let visible = false;
 
+    document.querySelectorAll('.character').forEach(character => {
+        character.addEventListener('mouseover', function(event) {
+            hoverbox.style.display = 'block';
+            hoverbox.style.top = `${event.clientY}px`;
+            hoverbox.style.left = `${event.clientX}px`;
+        });
+
+        character.addEventListener('mouseout', function() {
+            hoverbox.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.mark').forEach(mark => {
+        mark.addEventListener('mouseover', function(event) {
+            hoverbox.style.display = 'block';
+            hoverbox.style.top = `${event.clientY}px`;
+            hoverbox.style.left = `${event.clientX}px`;
+        });
+
+        mark.addEventListener('mouseout', function() {
+            hoverbox.style.display = 'none';
+        });
+    });
+});
 viewtoggle.addEventListener("click", function() {
     if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
         stylesheet.setAttribute("href", "simple.css");
@@ -137,16 +162,132 @@ function checkCharacterUnlocks(positionBooleanMap) {
             '167': 'mark-1-1', '106': 'mark-1-2', '43': 'mark-1-3', '49': 'mark-1-4', '149': 'mark-1-5', '205': 'mark-1-6', '70': 'mark-1-7', '179': 'mark-1-8', '440': 'mark-1-9', '441': 'mark-1-10', '296': 'mark-1-11'
         },
         2: { /* Maggy */
-            '168': 'mark-2-1', '': 'mark-2-2', '': 'mark-2-3', '': 'mark-2-4', '': 'mark-2-5', '': 'mark-2-6', '': 'mark-2-7', '': 'mark-2-8', '': 'mark-2-9', '': 'mark-2-10', '': 'mark-2-11'
+            '168': 'mark-2-1', '20': 'mark-2-2', '45': 'mark-2-3', '50': 'mark-2-4', '71': 'mark-2-5', '206': 'mark-2-6', '109': 'mark-2-7', '180': 'mark-2-8', '442': 'mark-2-9', '443': 'mark-2-10', '297': 'mark-2-11'
         },
-        // Add other characters' mark maps here
+        3: { /* Cain */
+            '171': 'mark-3-1', '21': 'mark-3-2', '46': 'mark-3-3', '75': 'mark-3-4', '51': 'mark-3-5', '207': 'mark-3-6', '110': 'mark-3-7', '181': 'mark-3-8', '444': 'mark-3-9', '445': 'mark-3-10', '298': 'mark-3-11'
+        },
+        4: { /* Judas */
+            '170': 'mark-4-1', '107': 'mark-4-2', '72': 'mark-4-3', '77': 'mark-4-4', '52': 'mark-4-5', '208': 'mark-4-6', '108': 'mark-4-7', '182': 'mark-4-8', '446': 'mark-4-9', '447': 'mark-4-10', '299': 'mark-4-11'
+        },
+        5: { /* Blue baby */
+            '174': 'mark-5-1', '29': 'mark-5-2', '48': 'mark-5-3', '113': 'mark-5-4', '73': 'mark-5-5', '209': 'mark-5-6', '114': 'mark-5-7', '183': 'mark-5-8', '448': 'mark-5-9', '449': 'mark-5-10', '300': 'mark-5-11'
+        },
+        6: { /* Eve */
+            '169': 'mark-6-1', '76': 'mark-6-2', '44': 'mark-6-3', '53': 'mark-6-4', '111': 'mark-6-5', '210': 'mark-6-6', '112': 'mark-6-7', '184': 'mark-6-8', '450': 'mark-6-9', '451': 'mark-6-10', '302': 'mark-6-11'
+        },
+        7: { /* Samson */
+            '177': 'mark-7-1', '54': 'mark-7-2', '56': 'mark-7-3', '55': 'mark-7-4', '74': 'mark-7-5', '211': 'mark-7-6', '115': 'mark-7-7', '185': 'mark-7-8', '452': 'mark-7-9', '453': 'mark-7-10', '301': 'mark-7-11'
+        },
+        8: { /* Azazel */
+            '173': 'mark-8-1', '126': 'mark-8-2', '127': 'mark-8-3', '128': 'mark-8-4', '47': 'mark-8-5', '212': 'mark-8-6', '9': 'mark-8-7', '186': 'mark-8-8', '454': 'mark-8-9', '455': 'mark-8-10', '304': 'mark-8-11'
+        },
+        9: { /* Lazarus */
+            '172': 'mark-9-1', '116': 'mark-9-2', '117': 'mark-9-3', '118': 'mark-9-4', '119': 'mark-9-5', '213': 'mark-9-6', '105': 'mark-9-7', '187': 'mark-9-8', '456': 'mark-9-9', '457': 'mark-9-10', '305': 'mark-9-11'
+        },
+        10: { /* Eden */
+            '176': 'mark-10-1', '121': 'mark-10-2', '122': 'mark-10-3', '123': 'mark-10-4', '124': 'mark-10-5', '214': 'mark-10-6', '125': 'mark-10-7', '188': 'mark-10-8', '458': 'mark-10-9', '459': 'mark-10-10', '303': 'mark-10-11'
+        },
+        11: { /* Lost */
+            '175': 'mark-11-1', '129': 'mark-11-2', '130': 'mark-11-3', '131': 'mark-11-4', '132': 'mark-11-5', '215': 'mark-11-6', '133': 'mark-11-7', '189': 'mark-11-8', '460': 'mark-11-9', '461': 'mark-11-10', '307': 'mark-11-11'
+        },
+        12: { /* Lilith */
+            '223': 'mark-12-1', '218': 'mark-12-2', '220': 'mark-12-3', '219': 'mark-12-4', '221': 'mark-12-5', '216': 'mark-12-6', '222': 'mark-12-7', '190': 'mark-12-8', '462': 'mark-12-9', '463': 'mark-12-10', '306': 'mark-12-11'
+        },
+        13: { /* Keeper */
+            '241': 'mark-13-1', '236': 'mark-13-2', '237': 'mark-13-3', '238': 'mark-13-4', '239': 'mark-13-5', '217': 'mark-13-6', '240': 'mark-13-7', '191': 'mark-13-8', '464': 'mark-13-9', '465': 'mark-13-10', '308': 'mark-13-11'
+        },
+        14: { /* Apollyon */
+            '318': 'mark-14-1', '310': 'mark-14-2', '311': 'mark-14-3', '312': 'mark-14-4', '313': 'mark-14-5', '317': 'mark-14-6', '314': 'mark-14-7', '315': 'mark-14-8', '466': 'mark-14-9', '467': 'mark-14-10', '309': 'mark-14-11'
+        },
+        15: { /* Forgotten */
+            '392': 'mark-15-1', '393': 'mark-15-2', '394': 'mark-15-3', '395': 'mark-15-4', '396': 'mark-15-5', '403': 'mark-15-6', '397': 'mark-15-7', '398': 'mark-15-8', '468': 'mark-15-9', '469': 'mark-15-10', '400': 'mark-15-11'
+        },
+        16: { /* Bethany */
+            '416': 'mark-16-1', '417': 'mark-16-2', '418': 'mark-16-3', '419': 'mark-16-4', '420': 'mark-16-5', '427': 'mark-16-6', '421': 'mark-16-7', '423': 'mark-16-8', '470': 'mark-16-9', '471': 'mark-16-10', '424': 'mark-16-11'
+        },
+        17: { /* Jacob */
+            '428': 'mark-17-1', '429': 'mark-17-2', '430': 'mark-17-3', '431': 'mark-17-4', '432': 'mark-17-5', '439': 'mark-17-6', '433': 'mark-17-7', '435': 'mark-17-8', '472': 'mark-17-9', '473': 'mark-17-10', '436': 'mark-17-11'
+        },
+        18: { /*T Isaac */
+            '': 'mark-18-1', '': 'mark-18-2', '': 'mark-18-3', '': 'mark-18-4', '': 'mark-18-5', '': 'mark-18-6', '': 'mark-18-7', '': 'mark-18-8', '': 'mark-18-9', '491': 'mark-18-10', '': 'mark-18-11'
+        },
+        19: { /*T Maggy */
+            '': 'mark-19-1', '': 'mark-19-2', '': 'mark-19-3', '': 'mark-19-4', '': 'mark-19-5', '': 'mark-19-6', '': 'mark-19-7', '': 'mark-19-8', '': 'mark-19-9', '492': 'mark-19-10', '': 'mark-19-11'
+        },
+        20: { /*T Cain */
+            '': 'mark-20-1', '': 'mark-20-2', '': 'mark-20-3', '': 'mark-20-4', '': 'mark-20-5', '': 'mark-20-6', '': 'mark-20-7', '': 'mark-20-8', '': 'mark-20-9', '493': 'mark-20-10', '': 'mark-20-11'
+        },
+        21: { /*T Judas */
+            '': 'mark-21-1', '': 'mark-21-2', '': 'mark-21-3', '': 'mark-21-4', '': 'mark-21-5', '': 'mark-21-6', '': 'mark-21-7', '': 'mark-21-8', '': 'mark-21-9', '494': 'mark-21-10', '': 'mark-21-11'
+        },
+        22: { /*T Blue baby */
+            '': 'mark-22-1', '': 'mark-22-2', '': 'mark-22-3', '': 'mark-22-4', '': 'mark-22-5', '': 'mark-22-6', '': 'mark-22-7', '': 'mark-22-8', '': 'mark-22-9', '495': 'mark-22-10', '': 'mark-22-11'
+        },
+        23: { /*T Eve */
+            '': 'mark-23-1', '': 'mark-23-2', '': 'mark-23-3', '': 'mark-23-4', '': 'mark-23-5', '': 'mark-23-6', '': 'mark-23-7', '': 'mark-23-8', '': 'mark-23-9', '496': 'mark-23-10', '': 'mark-23-11'
+        },
+        24: { /*T Samson */
+            '': 'mark-24-1', '': 'mark-24-2', '': 'mark-24-3', '': 'mark-24-4', '': 'mark-24-5', '': 'mark-24-6', '': 'mark-24-7', '': 'mark-24-8', '': 'mark-24-9', '497': 'mark-24-10', '': 'mark-24-11'
+        },
+        25: { /*T Azazel */
+            '': 'mark-25-1', '': 'mark-25-2', '': 'mark-25-3', '': 'mark-25-4', '': 'mark-25-5', '': 'mark-25-6', '': 'mark-25-7', '': 'mark-25-8', '': 'mark-25-9', '498': 'mark-25-10', '': 'mark-25-11'
+        },
+        26: { /*T Lazarus */
+            '': 'mark-26-1', '': 'mark-26-2', '': 'mark-26-3', '': 'mark-26-4', '': 'mark-26-5', '': 'mark-26-6', '': 'mark-26-7', '': 'mark-26-8', '': 'mark-26-9', '499': 'mark-26-10', '': 'mark-26-11'
+        },
+        27: { /*T Eden */
+            '': 'mark-27-1', '': 'mark-27-2', '': 'mark-27-3', '': 'mark-27-4', '': 'mark-27-5', '': 'mark-27-6', '': 'mark-27-7', '': 'mark-27-8', '': 'mark-27-9', '500': 'mark-27-10', '': 'mark-27-11'
+        },
+        28: { /*T Lost */
+            '': 'mark-28-1', '': 'mark-28-2', '': 'mark-28-3', '': 'mark-28-4', '': 'mark-28-5', '': 'mark-28-6', '': 'mark-28-7', '': 'mark-28-8', '': 'mark-28-9', '501': 'mark-28-10', '': 'mark-28-11'
+        },
+        29: { /*T Lilith */
+            '': 'mark-29-1', '': 'mark-29-2', '': 'mark-29-3', '': 'mark-29-4', '': 'mark-29-5', '': 'mark-29-6', '': 'mark-29-7', '': 'mark-29-8', '': 'mark-29-9', '502': 'mark-29-10', '': 'mark-29-11'
+        },
+        30: { /*T Keeper */
+            '': 'mark-30-1', '': 'mark-30-2', '': 'mark-30-3', '': 'mark-30-4', '': 'mark-30-5', '': 'mark-30-6', '': 'mark-30-7', '': 'mark-30-8', '': 'mark-30-9', '503': 'mark-30-10', '': 'mark-30-11'
+        },
+        31: { /*T Apollyon */
+            '': 'mark-31-1', '': 'mark-31-2', '': 'mark-31-3', '': 'mark-31-4', '': 'mark-31-5', '': 'mark-31-6', '': 'mark-31-7', '': 'mark-31-8', '': 'mark-31-9', '504': 'mark-31-10', '': 'mark-31-11'
+        },
+        32: { /*T Forgotten */
+            '': 'mark-32-1', '': 'mark-32-2', '': 'mark-32-3', '': 'mark-32-4', '': 'mark-32-5', '': 'mark-32-6', '': 'mark-32-7', '': 'mark-32-8', '': 'mark-32-9', '505': 'mark-32-10', '': 'mark-32-11'
+        },
+        33: { /*T Bethany */
+            '': 'mark-33-1', '': 'mark-33-2', '': 'mark-33-3', '': 'mark-33-4', '': 'mark-33-5', '': 'mark-33-6', '': 'mark-33-7', '': 'mark-33-8', '': 'mark-33-9', '506': 'mark-33-10', '': 'mark-33-11'
+        },
+        34: { /*T Jacob */
+            '': 'mark-34-1', '': 'mark-34-2', '': 'mark-34-3', '': 'mark-34-4', '': 'mark-34-5', '': 'mark-34-6', '': 'mark-34-7', '': 'mark-34-8', '': 'mark-34-9', '507': 'mark-34-10', '': 'mark-34-11'
+        },
+
     }
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 34; i++) {
         for (const [position, markId] of Object.entries(markMaps[i])) {
             if (positionBooleanMap[position] === false) {
                 document.getElementById(markId).classList.add('grayscale');
             }
         }        
     }
-
 }
+
+const styles = `
+  ${Array.from({ length: 34 }, (_, i) => i + 1).map(i => `
+    .mark-${i}-1 { top: 5%; left: 25%; } /* heart */
+    .mark-${i}-2 { top: 15%; left: 40%; } /* cath */
+    .mark-${i}-3 { top: 25%; left: 30%; } /* sheol */
+    .mark-${i}-4 { top: 20%; left: 55%; } /* pol */
+    .mark-${i}-5 { top: 35%; left: 45%; } /* neg */
+    .mark-${i}-6 { top: 39%; left: 68%; } /* megasatan */
+    .mark-${i}-7 { top: 35%; left: 20%; } /* bossrush */
+    .mark-${i}-8 { top: 52%; left: 46%; } /* hush */
+    .mark-${i}-9 { top: 70%; left: 48%; } /* mother */
+    .mark-${i}-10 { top: 57%; left: 67%; } /* beast */
+    .mark-${i}-11 { top: 15%; left: 70%; } /* greed */
+  `).join('')}
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = styles;
+document.head.appendChild(styleSheet);
