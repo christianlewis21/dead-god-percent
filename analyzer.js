@@ -269,6 +269,18 @@ function checkCharacterUnlocks(positionBooleanMap) {
             }
         }        
     }
+    for (let i = 18; i <= 34; i++) {     
+        for (let j = 4; j > 1; j--) {
+            if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
+                document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
+            }
+        }
+
+        if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
+            document.getElementById(`mark-${i}-7`).classList.add('grayscale');
+        }
+    }
+
 }
 
 const styles = `
@@ -288,6 +300,5 @@ const styles = `
 `;
 
 const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
 styleSheet.innerText = styles;
 document.head.appendChild(styleSheet);
