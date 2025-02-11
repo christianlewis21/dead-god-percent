@@ -102,7 +102,7 @@ taintedtoggle.addEventListener('click', function() {
 function generateCharacterDescriptions(character) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
         if (characterId === character.id) {
-            const achievementDescription = achievementsData[position]
+            const achievementDescription = achievementsData[position].split(': ').pop()
             const characterDescriptionsHTML = `
             <div>${achievementDescription}</div>
             `
