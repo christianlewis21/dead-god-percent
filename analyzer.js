@@ -3,20 +3,68 @@ const taintedtoggle = document.getElementById("taintedtoggle");
 const stylesheet = document.getElementById("stylesheet");
 const advancedgraphics = document.getElementById("advancedgraphics");
 const taintedgraphics = document.getElementById("taintedgraphics");
-const positionBooleanMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
+const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
 const hoverbox = document.querySelector(".hoverbox");
 const marks = document.getElementById("marks");
+const characterDescriptions = document.getElementById('characterdescriptions')
 
-document.addEventListener("DOMContentLoaded", function() {
+const characterAchievementMap = {
+    '-1': 'character-1',
+    '1': 'character-2',
+    '2': 'character-3',
+    '3': 'character-4',
+    '32': 'character-5',
+    '42': 'character-6',
+    '67': 'character-7', 
+    '79': 'character-8',
+    '80': 'character-9',
+    '81': 'character-10',
+    '82': 'character-11',
+    '199': 'character-12', 
+    '251': 'character-13',
+    '340': 'character-14',
+    '390': 'character-15',
+    '404': 'character-16',
+    '405': 'character-17',
+    '474': 'character-18',
+    '475': 'character-19',
+    '476': 'character-20',
+    '477': 'character-21',
+    '478': 'character-22',
+    '479': 'character-23',
+    '480': 'character-24', 
+    '481': 'character-25',
+    '482': 'character-26',
+    '483': 'character-27',
+    '484': 'character-28',
+    '485': 'character-29',
+    '486': 'character-30',
+    '487': 'character-31',
+    '488': 'character-32',
+    '489': 'character-33',
+    '490': 'character-34'
+};
+
+let achievementsData = {};
+
+fetch('achievements.json')
+    .then(response => response.json())
+    .then(data => {
+        achievementsData = data;
+    })
+    
+document.addEventListener("DOMContentLoaded", function(event) {
     generateCharacterSheets();
-    checkCharacterUnlocks(positionBooleanMap)
+    checkCharacterUnlocks(characterAchievementMap)
     taintedgraphics.remove()
     document.querySelectorAll('.character').forEach(character => {
-        character.addEventListener('mouseenter', function() {
+        character.addEventListener('mouseenter', function(event) {
+            generateCharacterDescriptions(character)
             hoverbox.style.display = 'block';
-            hoverbox.style.top = `${character.getBoundingClientRect() - 50}px`;
-            hoverbox.style.left = `${character.getBoundingClientRect() + 100}px`;
-        })
+            const rect = event.target.getBoundingClientRect();
+            hoverbox.style.top = `${rect.top}px`;
+            hoverbox.style.left = `${rect.left + 70}px`;
+        });
 
         character.addEventListener('mouseleave', function() {
             hoverbox.style.display = 'none';
@@ -51,8 +99,22 @@ taintedtoggle.addEventListener('click', function() {
     }
 });
 
+function generateCharacterDescriptions(character) {
+    for (const [position, characterId] of Object.entries(characterAchievementMap)) {
+        if (characterId === character.id) {
+            const achievementDescription = achievementsData[position]
+            const characterDescriptionsHTML = `
+            <div>${achievementDescription}</div>
+            `
+
+            characterDescriptions.innerHTML = characterDescriptionsHTML;
+        }
+    } 
+
+}
+
 function generateCharacterSheets() {
-    const characters = [
+    const characterMap = [
         { id: 1, name: '001isaac'},
         { id: 2, name: '002magdalene'},
         { id: 3, name: '003cain'},
@@ -103,7 +165,7 @@ function generateCharacterSheets() {
         { id: 11, name: 'Hgreed'}
     ]
 
-    const advancedGraphicsHTML = characters.slice(0, 17).map(character => `
+    const advancedGraphicsHTML = characterMap.slice(0, 17).map(character => `
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
@@ -113,7 +175,7 @@ function generateCharacterSheets() {
         </div>
     `).join('');
 
-    const taintedGraphicsHTML = characters.slice(17).map(character => `
+    const taintedGraphicsHTML = characterMap.slice(17).map(character => `
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/Tpaper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
@@ -127,23 +189,9 @@ function generateCharacterSheets() {
     taintedgraphics.innerHTML = taintedGraphicsHTML;
 }
 
-function checkCharacterUnlocks(positionBooleanMap) {
-    const characterMap = {
-        '1': 'character-2', '2': 'character-3', '3': 'character-4', '32': 'character-5', '42': 'character-6', '67': 'character-7', 
-        '79': 'character-8', '80': 'character-9', '81': 'character-10', '82': 'character-11', '199': 'character-12', 
-        '251': 'character-13', '340': 'character-14', '390': 'character-15', '404': 'character-16', '405': 'character-17', '474': 'character-18',
-        '475': 'character-19', '476': 'character-20', '477': 'character-21', '478': 'character-22', '479': 'character-23', '480': 'character-24', 
-        '481': 'character-25', '482': 'character-26', '483': 'character-27', '484': 'character-28', '485': 'character-29', '486': 'character-30',
-        '487': 'character-31', '488': 'character-32', '489': 'character-33', '490': 'character-34'
-    };
+function checkCharacterUnlocks(characterAchievementMap) {
     
-    for (const [position, characterId] of Object.entries(characterMap)) {
-        if (positionBooleanMap[position] === false) {
-            document.getElementById(characterId).classList.add('grayscale');
-        }
-    }
-
-    const markMaps = {
+    const markAchievementMap = {
         1: { /* Isaac */
             '167': 'mark-1-1', '106': 'mark-1-2', '43': 'mark-1-3', '49': 'mark-1-4', '149': 'mark-1-5', '205': 'mark-1-6', '70': 'mark-1-7', '179': 'mark-1-8', '440': 'mark-1-9', '441': 'mark-1-10', '296': 'mark-1-11'
         },
@@ -246,11 +294,17 @@ function checkCharacterUnlocks(positionBooleanMap) {
         34: { /*T Jacob */
             '0': 'mark-34-1', '580': 'mark-34-2', '580': 'mark-34-3', '580': 'mark-34-4', '580': 'mark-34-5', '617': 'mark-34-6', '634': 'mark-34-7', '634': 'mark-34-8', '581': 'mark-34-9', '507': 'mark-34-10', '542': 'mark-34-11'
         },
+    };
 
+    for (const [position, characterId] of Object.entries(characterAchievementMap)) {
+        if (AchievementMap[position] === false) {
+            document.getElementById(characterId).classList.add('grayscale');
+        }
     }
+
     for (let i = 1; i <= 34; i++) {
-        for (const [position, markId] of Object.entries(markMaps[i])) {
-            if (positionBooleanMap[position] === false) {
+        for (const [position, markId] of Object.entries(markAchievementMap[i])) {
+            if (AchievementMap[position] === false) {
                 document.getElementById(markId).classList.add('grayscale');
             }
         }        
