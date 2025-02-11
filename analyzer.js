@@ -56,7 +56,6 @@ fetch('achievements.json')
 document.addEventListener("DOMContentLoaded", function(event) {
     generateCharacterSheets();
     checkCharacterUnlocks(characterAchievementMap)
-    taintedgraphics.remove()
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             generateCharacterDescriptions(character)
@@ -70,7 +69,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             hoverbox.style.display = 'none';
         });
     });
+    taintedgraphics.remove()
 });
+
 viewtoggle.addEventListener("click", function() {
     if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
         stylesheet.setAttribute("href", "simple.css");
