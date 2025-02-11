@@ -34,7 +34,7 @@
 .charactersheets {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 3%;
+    gap: 4%;
     align-items: center;
     justify-content: center;
     width:auto

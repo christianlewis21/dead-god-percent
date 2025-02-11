@@ -11,29 +11,14 @@ document.addEventListener("DOMContentLoaded", function() {
     generateCharacterSheets();
     checkCharacterUnlocks(positionBooleanMap)
     taintedgraphics.remove()
-    
-    let visible = false;
-
     document.querySelectorAll('.character').forEach(character => {
-        character.addEventListener('mouseover', function(event) {
+        character.addEventListener('mouseenter', function() {
             hoverbox.style.display = 'block';
-            hoverbox.style.top = `${event.clientY}px`;
-            hoverbox.style.left = `${event.clientX}px`;
-        });
+            hoverbox.style.top = `${character.getBoundingClientRect() - 50}px`;
+            hoverbox.style.left = `${character.getBoundingClientRect() + 100}px`;
+        })
 
-        character.addEventListener('mouseout', function() {
-            hoverbox.style.display = 'none';
-        });
-    });
-
-    document.querySelectorAll('.mark').forEach(mark => {
-        mark.addEventListener('mouseover', function(event) {
-            hoverbox.style.display = 'block';
-            hoverbox.style.top = `${event.clientY}px`;
-            hoverbox.style.left = `${event.clientX}px`;
-        });
-
-        mark.addEventListener('mouseout', function() {
+        character.addEventListener('mouseleave', function() {
             hoverbox.style.display = 'none';
         });
     });
@@ -151,6 +136,7 @@ function checkCharacterUnlocks(positionBooleanMap) {
         '481': 'character-25', '482': 'character-26', '483': 'character-27', '484': 'character-28', '485': 'character-29', '486': 'character-30',
         '487': 'character-31', '488': 'character-32', '489': 'character-33', '490': 'character-34'
     };
+    
     for (const [position, characterId] of Object.entries(characterMap)) {
         if (positionBooleanMap[position] === false) {
             document.getElementById(characterId).classList.add('grayscale');
@@ -290,12 +276,12 @@ const styles = `
     .mark-${i}-3 { top: 25%; left: 30%; } /* sheol */
     .mark-${i}-4 { top: 20%; left: 55%; } /* pol */
     .mark-${i}-5 { top: 35%; left: 45%; } /* neg */
-    .mark-${i}-6 { top: 39%; left: 68%; } /* megasatan */
+    .mark-${i}-6 { top: 36%; left: 68%; } /* megasatan */
     .mark-${i}-7 { top: 35%; left: 20%; } /* bossrush */
     .mark-${i}-8 { top: 52%; left: 46%; } /* hush */
     .mark-${i}-9 { top: 70%; left: 48%; } /* mother */
     .mark-${i}-10 { top: 57%; left: 67%; } /* beast */
-    .mark-${i}-11 { top: 15%; left: 70%; } /* greed */
+    .mark-${i}-11 { top: 18%; left: 76%; } /* greed */
   `).join('')}
 `;
 
