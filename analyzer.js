@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             generateCharacterDescriptions(character)
+
             hoverbox.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             hoverbox.style.top = `${rect.top}px`;
@@ -176,13 +177,14 @@ document.addEventListener("DOMContentLoaded", function() {
             hoverbox.style.display = 'none';
         });
     });
+    
     document.querySelectorAll('.mark').forEach(mark => {
         mark.addEventListener('mouseenter', function(event) {
             generateMarkDescriptions(mark)
             hoverbox.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             hoverbox.style.top = `${rect.top}px`;
-            hoverbox.style.left = `${rect.left + 70}px`;
+            hoverbox.style.left = `${rect.left + 30}px`;
         });
 
         mark.addEventListener('mouseleave', function() {
@@ -222,9 +224,9 @@ taintedtoggle.addEventListener('click', function() {
 function generateCharacterDescriptions(character) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
         if (characterId === character.id) {
-            const achievementDescription = achievementsData[position].split(': ').pop()
+            const characterAchievementDescription = achievementsData[position].split(': ').pop()
             const characterDescriptionsHTML = `
-                <div>${achievementDescription}</div>
+                <div>${characterAchievementDescription}</div>
                 `
                 characterDescriptions.innerHTML = characterDescriptionsHTML;
             }
@@ -235,12 +237,12 @@ function generateMarkDescriptions(mark) {
     for (let i = 1; i <= 34; i++) {
         for (const [position, markId] of Object.entries(markAchievementMap[i])) {
             if (markId === mark.id) {
-                const achievementDescription = achievementsData[position].split(': ').pop()
+                const markAchievementDescription = achievementsData[position].split(': ').pop()
                 const markDescriptionsHTML = `
-                    <div>${achievementDescription}</div>
+                    <div>${markAchievementDescription}</div>
                     `
                     markDescriptions.innerHTML = markDescriptionsHTML;
-                }
+            }
         }
     }
 }
