@@ -4,7 +4,6 @@ const stylesheet = document.getElementById("stylesheet");
 const advancedgraphics = document.getElementById("advancedgraphics");
 const taintedgraphics = document.getElementById("taintedgraphics");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
-const marks = document.getElementById("marks");
 const characterDescriptions = document.getElementById('characterdescriptions')
 const markDescriptions = document.getElementById('markdescriptions')
 
