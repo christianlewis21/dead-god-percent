@@ -203,8 +203,8 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
             const rect = event.target.getBoundingClientRect();
             characterDescriptions.style.top = `${rect.top}px`;
             characterDescriptions.style.left = `${rect.left + 70}px`;
+            console.log('test')
         });
-        console.log('test')
 
         character.addEventListener('mouseleave', function() {
             characterDescriptions.style.display = 'none';
@@ -218,8 +218,8 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
             const rect = event.target.getBoundingClientRect();
             markDescriptions.style.top = `${rect.top}px`;
             markDescriptions.style.left = `${rect.left + 30}px`;
+            console.log('test')
         });
-        console.log('test')
 
         mark.addEventListener('mouseleave', function() {
             markDescriptions.style.display = 'none';
