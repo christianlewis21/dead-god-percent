@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             generateCharacterDescriptions(character)
+            generateMarkDescriptions(character)
             hoverbox.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             hoverbox.style.top = `${rect.top}px`;
@@ -218,7 +219,7 @@ function generateCharacterDescriptions(character) {
     }
 }
 
-function generateAchievementDescriptions(character) {
+function generateMarkDescriptions(character) {
     for (let i = 1; i <= 34; i++) {
         for (const [position, characterId] of Object.entries(markAchievementMap[i])) {
             if (characterId === character.id) {
