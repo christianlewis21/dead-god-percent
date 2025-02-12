@@ -4,7 +4,6 @@ const stylesheet = document.getElementById("stylesheet");
 const advancedgraphics = document.getElementById("advancedgraphics");
 const taintedgraphics = document.getElementById("taintedgraphics");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
-const hoverbox = document.querySelector(".hoverbox");
 const marks = document.getElementById("marks");
 const characterDescriptions = document.getElementById('characterdescriptions')
 const markDescriptions = document.getElementById('markdescriptions')
@@ -166,29 +165,28 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             generateCharacterDescriptions(character)
-
-            hoverbox.style.display = 'block';
+            characterDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
-            hoverbox.style.top = `${rect.top}px`;
-            hoverbox.style.left = `${rect.left + 70}px`;
+            characterDescriptions.style.top = `${rect.top}px`;
+            characterDescriptions.style.left = `${rect.left + 70}px`;
         });
 
         character.addEventListener('mouseleave', function() {
-            hoverbox.style.display = 'none';
+            characterDescriptions.style.display = 'none';
         });
     });
     
     document.querySelectorAll('.mark').forEach(mark => {
         mark.addEventListener('mouseenter', function(event) {
             generateMarkDescriptions(mark)
-            hoverbox.style.display = 'block';
+            markDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
-            hoverbox.style.top = `${rect.top}px`;
-            hoverbox.style.left = `${rect.left + 30}px`;
+            markDescriptions.style.top = `${rect.top}px`;
+            markDescriptions.style.left = `${rect.left + 30}px`;
         });
 
         mark.addEventListener('mouseleave', function() {
-            hoverbox.style.display = 'none';
+            markDescriptions.style.display = 'none';
         });
     })
 });
