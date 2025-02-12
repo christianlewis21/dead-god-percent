@@ -204,6 +204,7 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
             characterDescriptions.style.top = `${rect.top}px`;
             characterDescriptions.style.left = `${rect.left + 70}px`;
         });
+        console.log('test')
 
         character.addEventListener('mouseleave', function() {
             characterDescriptions.style.display = 'none';
@@ -218,12 +219,14 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
             markDescriptions.style.top = `${rect.top}px`;
             markDescriptions.style.left = `${rect.left + 30}px`;
         });
+        console.log('test')
 
         mark.addEventListener('mouseleave', function() {
             markDescriptions.style.display = 'none';
         });
     })
 }
+
 function generateCharacterDescriptions(character) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
         if (characterId === character.id) {
