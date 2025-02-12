@@ -6,6 +6,8 @@ const taintedgraphics = document.getElementById("taintedgraphics");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
 const characterDescriptions = document.getElementById('characterdescriptions')
 const markDescriptions = document.getElementById('markdescriptions')
+const taintedCharacterDescriptions = document.getElementById('taintedcharacterdescriptions')
+const taintedMarkDescriptions = document.getElementById('taintedmarkdescriptions')
 
 const characterAchievementMap = {
     '-1': 'character-1',
@@ -156,11 +158,44 @@ fetch('achievements.json')
     .then(data => {
         achievementsData = data;
     })
-    
+
 document.addEventListener("DOMContentLoaded", function() {
     generateCharacterSheets();
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap)
     taintedgraphics.remove()
+    generateAllDescriptions(characterDescriptions, markDescriptions)
+});
+
+viewtoggle.addEventListener("click", function() {
+    if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
+        stylesheet.setAttribute("href", "simple.css");
+        advancedgraphics.remove()
+        taintedgraphics.remove()
+        const data = localStorage.getItem("processedData");
+        if (data) {
+            document.getElementById("fileContent").textContent = data;
+        }
+
+    } else {
+        stylesheet.setAttribute("href", "analyzerstyles.css");
+        fileContent.textContent = '';
+        document.body.appendChild(advancedgraphics);
+        taintedgraphics.remove()
+    }
+});
+
+taintedtoggle.addEventListener('click', function() {
+    if (document.body.contains(advancedgraphics)) {
+        advancedgraphics.remove()
+        document.body.appendChild(taintedgraphics)
+        generateAllDescriptions(taintedCharacterDescriptions, taintedMarkDescriptions)
+    } else {
+        taintedgraphics.remove()
+        document.body.appendChild(advancedgraphics)
+    }
+});
+
+function generateAllDescriptions(characterDescriptions, markDescriptions) {
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             generateCharacterDescriptions(character)
@@ -188,36 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
             markDescriptions.style.display = 'none';
         });
     })
-});
-
-viewtoggle.addEventListener("click", function() {
-    if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
-        stylesheet.setAttribute("href", "simple.css");
-        advancedgraphics.remove()
-        taintedgraphics.remove()
-        const data = localStorage.getItem("processedData");
-        if (data) {
-            document.getElementById("fileContent").textContent = data;
-        }
-
-    } else {
-        stylesheet.setAttribute("href", "analyzerstyles.css");
-        fileContent.textContent = '';
-        document.body.appendChild(advancedgraphics);
-        taintedgraphics.remove()
-    }
-});
-
-taintedtoggle.addEventListener('click', function() {
-    if (document.body.contains(advancedgraphics)) {
-        advancedgraphics.remove()
-        document.body.appendChild(taintedgraphics)
-    } else {
-        taintedgraphics.remove()
-        document.body.appendChild(advancedgraphics)
-    }
-});
-
+}
 function generateCharacterDescriptions(character) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
         if (characterId === character.id) {
