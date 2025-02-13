@@ -231,11 +231,11 @@ function generateCharacterDescriptions(character) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
         if (characterId === character.id) {
             const characterAchievementDescription = achievementsData[position].split(': ').pop()
+            console.log(characterAchievementDescription)
             const characterDescriptionsHTML = `
                 <div>${characterAchievementDescription}</div>
                 `
                 characterDescriptions.innerHTML = characterDescriptionsHTML;
-            console.log(characterAchievementDescription)
             }
     }
 }
@@ -245,6 +245,7 @@ function generateMarkDescriptions(mark) {
         for (const [position, markId] of Object.entries(markAchievementMap[i])) {
             if (markId === mark.id) {
                 const markAchievementDescription = achievementsData[position].split(': ').pop()
+                console.log(markAchievementDescription)
                 const markDescriptionsHTML = `
                     <div>${markAchievementDescription}</div>
                     `
