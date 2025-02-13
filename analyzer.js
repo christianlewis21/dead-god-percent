@@ -218,7 +218,6 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
             const rect = event.target.getBoundingClientRect();
             markDescriptions.style.top = `${rect.top}px`;
             markDescriptions.style.left = `${rect.left + 30}px`;
-            
             console.log(mark.id)
         });
 
@@ -236,6 +235,7 @@ function generateCharacterDescriptions(character) {
                 <div>${characterAchievementDescription}</div>
                 `
                 characterDescriptions.innerHTML = characterDescriptionsHTML;
+            console.log(characterAchievementDescription)
             }
     }
 }
