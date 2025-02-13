@@ -194,6 +194,11 @@ taintedtoggle.addEventListener('click', function() {
         document.body.appendChild(advancedgraphics)
         generateAllDescriptions(characterDescriptions, markDescriptions);
     }
+    
+    generateAllDescriptions(
+        document.body.contains(taintedgraphics) ? taintedCharacterDescriptions : characterDescriptions,
+        document.body.contains(taintedgraphics) ? taintedMarkDescriptions : markDescriptions
+    );
 });
 
 function generateAllDescriptions(characterDescriptions, markDescriptions) {
