@@ -192,13 +192,14 @@ taintedtoggle.addEventListener('click', function() {
     } else {
         taintedgraphics.remove()
         document.body.appendChild(advancedgraphics)
+        generateAllDescriptions(characterDescriptions, markDescriptions);
     }
 });
 
 function generateAllDescriptions(characterDescriptions, markDescriptions) {
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
-            generateCharacterDescriptions(character)
+            generateCharacterDescriptions(character, characterDescriptions);
             characterDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             characterDescriptions.style.top = `${rect.top}px`;
@@ -213,7 +214,7 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
     
     document.querySelectorAll('.mark').forEach(mark => {
         mark.addEventListener('mouseenter', function(event) {
-            generateMarkDescriptions(mark)
+            generateMarkDescriptions(mark, markDescriptions);
             markDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             markDescriptions.style.top = `${rect.top}px`;
@@ -227,11 +228,10 @@ function generateAllDescriptions(characterDescriptions, markDescriptions) {
     })
 }
 
-function generateCharacterDescriptions(character) {
+function generateCharacterDescriptions(character, characterDescriptions) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
         if (characterId === character.id) {
             const characterAchievementDescription = achievementsData[position].split(': ').pop()
-            console.log(characterAchievementDescription)
             const characterDescriptionsHTML = `
                 <div>${characterAchievementDescription}</div>
                 `
@@ -240,12 +240,11 @@ function generateCharacterDescriptions(character) {
     }
 }
 
-function generateMarkDescriptions(mark) {
+function generateMarkDescriptions(mark, markDescriptions) {
     for (let i = 1; i <= 34; i++) {
         for (const [position, markId] of Object.entries(markAchievementMap[i])) {
             if (markId === mark.id) {
                 const markAchievementDescription = achievementsData[position].split(': ').pop()
-                console.log(markAchievementDescription)
                 const markDescriptionsHTML = `
                     <div>${markAchievementDescription}</div>
                     `
