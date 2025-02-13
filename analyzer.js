@@ -242,13 +242,12 @@ function generateCharacterDescriptions(character, characterDescriptions) {
 }
 
 function generateMarkDescriptions(mark, markDescriptions) {
-    for (let i = 1; i <= 34; i++) {
-        for (const [position, markId] of Object.entries(markAchievementMap[i])) {
-            if (markId === mark.id) {
-                const markAchievementDescription = achievementsData[position].split(': ').pop();
-                markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
-                markDescriptions.style.display = 'block';
-            }
+    const characterId = mark.getAttribute('data-character-id');
+    for (const [position, markId] of Object.entries(markAchievementMap[characterId])) {
+        if (markId === mark.id) {
+            const markAchievementDescription = achievementsData[position].split(': ').pop();
+            markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
+            markDescriptions.style.display = 'block';
         }
     }
 }
@@ -310,7 +309,7 @@ function generateCharacterSheets() {
             <img class='sheet' src="pictures/refs/marks/paper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
-                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
+                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' data-character-id='${character.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>
     `).join('');
@@ -320,7 +319,7 @@ function generateCharacterSheets() {
             <img class='sheet' src="pictures/refs/marks/Tpaper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
-                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
+                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' data-character-id='${character.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>
     `).join('');
