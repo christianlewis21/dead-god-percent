@@ -242,12 +242,28 @@ function generateCharacterDescriptions(character, characterDescriptions) {
 }
 
 function generateMarkDescriptions(mark, markDescriptions) {
-    const characterId = mark.getAttribute('data-character-id');
-    for (const [position, markId] of Object.entries(markAchievementMap[characterId])) {
-        if (markId === mark.id) {
-            const markAchievementDescription = achievementsData[position].split(': ').pop();
-            markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
-            markDescriptions.style.display = 'block';
+    for (let i = 1; i <= 34; i++) {
+        for (let j = 18; j <= 34; j++) {     
+            for (let k = 4; k > 1; k--) {
+                document.getElementById(`mark-${j}-${k}`) === document.getElementById(`mark-${j}-5`)
+                for (const [position, markId] of Object.entries(markAchievementMap[i])) {
+                    if (markId === mark.id) {
+                        const markAchievementDescription = achievementsData[position].split(': ').pop();
+                        markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
+                        markDescriptions.style.display = 'block';
+                    }
+                }
+            }
+    
+            document.getElementById(`mark-${j}-7`) === document.getElementById(`mark-${j}-8`)
+            for (const [position, markId] of Object.entries(markAchievementMap[i])) {
+                if (markId === mark.id) {
+                    const markAchievementDescription = achievementsData[position].split(': ').pop();
+                    markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
+                    markDescriptions.style.display = 'block';
+                }
+            }
+
         }
     }
 }
@@ -304,28 +320,25 @@ function generateCharacterSheets() {
         { id: 11, name: 'Hgreed'}
     ]
 
-    const advancedGraphicsHTML = characterMap.slice(0, 17).map(character => `
+    advancedgraphics.innerHTML = characterMap.slice(0, 17).map(character => `
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/paper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
-                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' data-character-id='${character.id}' src="pictures/refs/marks/${mark.name}.png">
+                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>
     `).join('');
 
-    const taintedGraphicsHTML = characterMap.slice(17).map(character => `
+    taintedgraphics.innerHTML = characterMap.slice(17).map(character => `
         <div class="completion">
             <img class='sheet' src="pictures/refs/marks/Tpaper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
-                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' data-character-id='${character.id}' src="pictures/refs/marks/${mark.name}.png">
+                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>
     `).join('');
-    
-    advancedgraphics.innerHTML = advancedGraphicsHTML;
-    taintedgraphics.innerHTML = taintedGraphicsHTML;
 }
 
 function checkCharacterUnlocks(characterAchievementMap, markAchievementMap) {
