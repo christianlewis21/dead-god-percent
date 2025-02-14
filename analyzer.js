@@ -163,7 +163,9 @@ document.addEventListener("DOMContentLoaded", function() {
     generateCharacterSheets();
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap)
     taintedgraphics.remove()
+    checkDeliriumUnlock(true)
     generateAllDescriptions(characterDescriptions, markDescriptions)
+    checkFullUnlock()
 });
 
 viewtoggle.addEventListener("click", function() {
@@ -189,6 +191,7 @@ taintedtoggle.addEventListener('click', function() {
         advancedgraphics.remove()
         document.body.appendChild(taintedgraphics)
         generateAllDescriptions(taintedCharacterDescriptions, taintedMarkDescriptions)
+        checkDeliriumUnlock(false)
     } else {
         taintedgraphics.remove()
         document.body.appendChild(advancedgraphics)
@@ -322,38 +325,121 @@ function generateCharacterSheets() {
         { id: 10, name: 'Hbeast'},
         { id: 11, name: 'Hgreed'}
     ]
-
+    
     advancedgraphics.innerHTML = characterMap.slice(0, 17).map(character => `
         <div class="completion">
-            <img class='sheet' src="pictures/refs/marks/paper.png">
+            <img class='sheet' id ='paper-character-${character.id}' src="pictures/refs/marks/deliriumpaper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
                 <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
-        </div>
-    `).join('');
+        </div>`).join('')
+        
 
     taintedgraphics.innerHTML = characterMap.slice(17).map(character => `
         <div class="completion">
-            <img class='sheet' src="pictures/refs/marks/Tpaper.png">
+            <img class='sheet' id ='paper-character-${character.id}' src="pictures/refs/marks/Tdeliriumpaper.png">
             <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
             ${markMap.map(mark => `
                 <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
-        </div>
-    `).join('');
+        </div>`).join('');
+}
+
+function checkDeliriumUnlock(value) {
+    const deliriumMap = {
+            '282': 'paper-character-1',
+            '283': 'paper-character-2',
+            '284': 'paper-character-3',
+            '285': 'paper-character-4',
+            '286': 'paper-character-5',
+            '287': 'paper-character-6',
+            '288': 'paper-character-7',
+            '289': 'paper-character-8',
+            '290': 'paper-character-9',
+            '291': 'paper-character-10',
+            '292': 'paper-character-11',
+            '293': 'paper-character-12',
+            '294': 'paper-character-13',
+            '295': 'paper-character-14',
+            '401': 'paper-character-15',
+            '425': 'paper-character-16',
+            '437': 'paper-character-17',
+        }
+    const taintedDeliriumMap = {
+        '584': 'paper-character-18',
+        '585': 'paper-character-19',
+        '586': 'paper-character-20',
+        '587': 'paper-character-21',
+        '588': 'paper-character-22',
+        '589': 'paper-character-23',
+        '590': 'paper-character-24',
+        '591': 'paper-character-25',
+        '592': 'paper-character-26',
+        '593': 'paper-character-27',
+        '594': 'paper-character-28',
+        '595': 'paper-character-29',
+        '596': 'paper-character-30',
+        '597': 'paper-character-31',
+        '598': 'paper-character-32',
+        '599': 'paper-character-33',
+        '600': 'paper-character-34'
+    }
+    if (value) {
+        for (const [position, paperId] of Object.entries(deliriumMap)) {
+            if (!AchievementMap[position]) {
+                document.getElementById(paperId).classList.add('grayscale');
+            } 
+        }
+    }
+    else {
+        for (const [position, paperId] of Object.entries(taintedDeliriumMap)) {
+            if (!AchievementMap[position]) {
+                document.getElementById(paperId).classList.add('grayscale');
+            } 
+        }
+    }
+
+
+}
+
+function checkFullUnlock() {
+    const fullMap = {
+        '253': 'character-1',
+        '254': 'character-2',
+        '261': 'character-3',
+        '263': 'character-4',
+        '252': 'character-5',
+        '255': 'character-6',
+        '262': 'character-7',
+        '259': 'character-8',
+        '257': 'character-9',
+        '256': 'character-10',
+        '156': 'character-11',
+        '260': 'character-12',
+        '264': 'character-13',
+        '319': 'character-14',
+        '402': 'character-15',
+        '426': 'character-16',
+        '438': 'character-17'
+    }
+    for (const [position, characterId] of Object.entries(fullMap)) {
+        if (AchievementMap[position]) {
+            document.getElementById(characterId).classList.add('golden');
+        }
+    }
 }
 
 function checkCharacterUnlocks(characterAchievementMap, markAchievementMap) {
     for (const [position, characterId] of Object.entries(characterAchievementMap)) {
-        if (AchievementMap[position] === false) {
+        if (!AchievementMap[position]) {
             document.getElementById(characterId).classList.add('grayscale');
         }
     }
 
     for (let i = 1; i <= 34; i++) {
         for (const [position, markId] of Object.entries(markAchievementMap[i])) {
-            if (AchievementMap[position] === false) {
+            if (!AchievementMap[position]) {
                 document.getElementById(markId).classList.add('grayscale');
             }
         }        

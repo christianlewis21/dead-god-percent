@@ -6,7 +6,6 @@
   }
 
 * {
-    /* background-color: #000000; */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -37,8 +36,7 @@
     gap: 4%;
     align-items: center;
     justify-content: center;
-    width:auto
-    
+    width: auto
 }
 
 .completion {
@@ -86,4 +84,8 @@
     z-index: 4;
     top:25%;
     left: 5%;
+}
+
+.golden {
+    filter:sepia(1) hue-rotate(15deg) saturate(5);
 }
