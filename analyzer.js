@@ -245,22 +245,14 @@ function generateMarkDescriptions(mark, markDescriptions) {
     for (let i = 1; i <= 34; i++) {
         for (let j = 18; j <= 34; j++) {     
             for (let k = 4; k > 1; k--) {
-                document.getElementById(`mark-${j}-${k}`) === document.getElementById(`mark-${j}-5`)
+                document.getElementById(`mark-${j}-${k}`) = document.getElementById(`mark-${j}-5`)
+                document.getElementById(`mark-${j}-7`) === document.getElementById(`mark-${j}-8`)
                 for (const [position, markId] of Object.entries(markAchievementMap[i])) {
                     if (markId === mark.id) {
                         const markAchievementDescription = achievementsData[position].split(': ').pop();
                         markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
                         markDescriptions.style.display = 'block';
                     }
-                }
-            }
-    
-            document.getElementById(`mark-${j}-7`) === document.getElementById(`mark-${j}-8`)
-            for (const [position, markId] of Object.entries(markAchievementMap[i])) {
-                if (markId === mark.id) {
-                    const markAchievementDescription = achievementsData[position].split(': ').pop();
-                    markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
-                    markDescriptions.style.display = 'block';
                 }
             }
 
