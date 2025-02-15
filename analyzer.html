@@ -9,16 +9,14 @@
 <body>
     <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
     <div class="header">
+        <div class="button buttontext" id="viewtoggle">Simple View</div>
         <div class="button buttontext" id = 'characterbutton'>Characters</div>
         <div class="button buttontext" id = 'challengebutton'>Challenges</div>
         <div class="button buttontext" id = 'enemiesbutton'>Enemies</div>
         <div class="button buttontext" id = 'miscbutton'>Misc</div>
     </div>
-    <input type="checkbox" id="viewtoggle" checked></input>
-    <label for="viewtoggle">Advanced View</label><br>
 
     <input type="checkbox" id="taintedtoggle"></input>
-    <label for="taintedtoggle">View Tainted Progress</label><br>
 
     <div id="container">
         <div class="charactersheets" id="advancedgraphics"></div>
@@ -31,6 +29,10 @@
 
     <div id="challengecontainer">
         <div class="challenges" id="challengegraphics"></div>
+    </div>
+
+    <div id = "enemycontainer">
+        <div class="enemies" id="enemygraphics"></div>
     </div>
 
     <pre id="fileContent"></pre>

@@ -1,57 +1,53 @@
-const viewtoggle = document.getElementById("viewtoggle");
-const taintedtoggle = document.getElementById("taintedtoggle");
 const stylesheet = document.getElementById("stylesheet");
-const advancedgraphics = document.getElementById("advancedgraphics");
-const taintedgraphics = document.getElementById("taintedgraphics");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
+
+const simpleButton = document.getElementById("viewtoggle");
+
+const characterButton = document.getElementById('characterbutton')
+const advancedgraphics = document.getElementById("advancedgraphics");
 const characterDescriptions = document.getElementById('characterdescriptions')
 const markDescriptions = document.getElementById('markdescriptions')
+
+const taintedButton = document.getElementById("taintedtoggle");
+const taintedgraphics = document.getElementById("taintedgraphics");
 const taintedCharacterDescriptions = document.getElementById('taintedcharacterdescriptions')
 const taintedMarkDescriptions = document.getElementById('taintedmarkdescriptions')
-const characterButton = document.getElementById('characterbutton')
+
 const challengeButton = document.getElementById('challengebutton')
 const challengegraphics = document.getElementById('challengegraphics')
+
+const enemyButton = document.getElementById('enemybutton')
+const enemygraphics = document.getElementById('enemygraphics')
+
 let checked = false;
+
 let achievementsData = {};
 
 fetch('achievements.json')
     .then(response => response.json())
-    .then(data => {
-        achievementsData = data;
+    .then(newData => {
+        achievementsData = newData;
     })
 
 document.addEventListener("DOMContentLoaded", function() {
     generateSheets(characterMap, markMap);
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap, true, deliriumMap, taintedDeliriumMap, fullMap)
     generateDescriptions(characterDescriptions, markDescriptions)
-    generateChallengeProgress(challengeMap)
     taintedgraphics.remove();
     challengegraphics.remove();
 });
 
-viewtoggle.addEventListener("click", function() {
-    if (stylesheet.getAttribute("href") === "analyzerstyles.css") {
-        stylesheet.setAttribute("href", "simple.css");
-        advancedgraphics.remove()
-        taintedgraphics.remove()
-        const data = localStorage.getItem("processedData");
-        if (data) {
-            document.getElementById("fileContent").textContent = data;
-        }
-
-    } else {
-        stylesheet.setAttribute("href", "analyzerstyles.css");
-        fileContent.textContent = '';
-        if (checked) {
-            document.body.appendChild(taintedgraphics);
-        }
-        else {
-            document.body.appendChild(advancedgraphics);
-        }
+simpleButton.addEventListener("click", function() {
+    stylesheet.setAttribute("href", "simple.css");
+    advancedgraphics.remove()
+    taintedgraphics.remove()
+    const data = localStorage.getItem("processedData");
+    if (data) {
+        document.getElementById("fileContent").textContent = data;
     }
 });
 
-taintedtoggle.addEventListener('click', function() {
+taintedButton.addEventListener('click', function() {
     checked = !checked;
     if (checked) {
         advancedgraphics.remove()
@@ -64,8 +60,10 @@ taintedtoggle.addEventListener('click', function() {
 });
 
 characterButton.addEventListener('click', function() {
+    stylesheet.setAttribute("href", "analyzerstyles.css");
+    fileContent.textContent = '';
     challengegraphics.remove()
-    console.log(taintedtoggle)
+    document.body.appendChild(taintedButton);
     if (checked) {
         document.body.appendChild(taintedgraphics);
     }
@@ -75,18 +73,14 @@ characterButton.addEventListener('click', function() {
 });
 
 challengeButton.addEventListener('click', function() {
+    stylesheet.setAttribute("href", "analyzerstyles.css");
+    fileContent.textContent = '';
     advancedgraphics.remove()
     taintedgraphics.remove()
+    taintedButton.remove()
     document.body.appendChild(challengegraphics);
+    generateChallengeProgress(challengeMap)
 });
-
-function generateChallengeProgress(challengeMap) {
-    challengegraphics.innerHTML = challengeMap.map(challenge => `
-    <div class="challenges">
-        <h1>${challenge.name}</h1>
-    </div>`
-    ).join('')
-};
 
 function generateSheets(characterMap, markMap) {
     advancedgraphics.innerHTML = characterMap.slice(0, 17).map(character => `
@@ -216,6 +210,19 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             markDescriptions.style.display = 'none';
         });
     })
+}
+
+function generateChallengeProgress(challengeMap) {
+    challengegraphics.innerHTML = '';
+    for (const [position, challengeId] of Object.entries(challengeMap)) {
+        if (AchievementMap[position] === false) {
+            let challengeAchievementDescription = achievementsData[position].split(': ').pop();
+            challengegraphics.innerHTML += `
+                <div class="challenges">
+                    <h1>${challengeAchievementDescription}</h1>
+                </div>`;
+        }
+    }
 }
 
 const styles = `
