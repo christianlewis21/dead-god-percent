@@ -144,13 +144,13 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             for (let j = 4; j > 1; j--) {
                 if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
                     document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
-                    characterProgress--;
+                    characterProgress-= 5;
                 }
             }
     
             if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
                 document.getElementById(`mark-${i}-7`).classList.add('grayscale');
-                characterProgress--;
+                characterProgress-= 2;
             }
         }
         for (const [position, paperId] of Object.entries(deliriumMap)) {
