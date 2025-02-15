@@ -35,12 +35,15 @@ document.addEventListener("DOMContentLoaded", function() {
     generateDescriptions(characterDescriptions, markDescriptions)
     taintedgraphics.remove();
     challengegraphics.remove();
+    enemygraphics.remove();
 });
 
 simpleButton.addEventListener("click", function() {
     stylesheet.setAttribute("href", "simple.css");
     advancedgraphics.remove()
     taintedgraphics.remove()
+    enemygraphics.remove()
+    taintedButton.remove()
     const data = localStorage.getItem("processedData");
     if (data) {
         document.getElementById("fileContent").textContent = data;
@@ -63,6 +66,7 @@ characterButton.addEventListener('click', function() {
     stylesheet.setAttribute("href", "analyzerstyles.css");
     fileContent.textContent = '';
     challengegraphics.remove()
+    enemygraphics.remove()
     document.body.appendChild(taintedButton);
     if (checked) {
         document.body.appendChild(taintedgraphics);
@@ -77,9 +81,20 @@ challengeButton.addEventListener('click', function() {
     fileContent.textContent = '';
     advancedgraphics.remove()
     taintedgraphics.remove()
+    enemygraphics.remove()
     taintedButton.remove()
     document.body.appendChild(challengegraphics);
     generateChallengeProgress(challengeMap)
+});
+
+enemyButton.addEventListener('click', function() {
+    stylesheet.setAttribute("href", "analyzerstyles.css");
+    fileContent.textContent = '';
+    advancedgraphics.remove()
+    taintedgraphics.remove()
+    taintedButton.remove()
+    document.body.appendChild(enemygraphics);
+    generateEnemyProgress(enemyMap)
 });
 
 function generateSheets(characterMap, markMap) {
@@ -220,6 +235,19 @@ function generateChallengeProgress(challengeMap) {
             challengegraphics.innerHTML += `
                 <div class="challenges">
                     <h1>${challengeAchievementDescription}</h1>
+                </div>`;
+        }
+    }
+}
+
+function generateEnemyProgress(enemyMap) {
+    enemygraphics.innerHTML = '';
+    for (const [position, enemyId] of Object.entries(enemyMap)) {
+        if (AchievementMap[position] === false) {
+            let enemyAchievementDescription = achievementsData[position].split(': ').pop();
+            enemygraphics.innerHTML += `
+                <div class="enemies">
+                    <h1>${enemyAchievementDescription}</h1>
                 </div>`;
         }
     }

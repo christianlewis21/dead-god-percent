@@ -299,3 +299,6 @@ const challengeMap = {
     '533': 'challenge-44',
     '538': 'challenge-45'
 };
+
+const enemyMap = {
+};
