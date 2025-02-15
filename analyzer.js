@@ -11,7 +11,7 @@ const taintedMarkDescriptions = document.getElementById('taintedmarkdescriptions
 const characterButton = document.getElementById('characterbutton')
 const challengeButton = document.getElementById('challengebutton')
 const challengegraphics = document.getElementById('challengegraphics')
-
+let checked = false;
 let achievementsData = {};
 
 fetch('achievements.json')
@@ -24,10 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
     generateSheets(characterMap, markMap);
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap, true, deliriumMap, taintedDeliriumMap, fullMap)
     generateDescriptions(characterDescriptions, markDescriptions)
-    checkFullUnlock(fullMap)
     generateChallengeProgress(challengeMap)
-    taintedgraphics.remove()
-    challengegraphics.remove()
+    taintedgraphics.remove();
+    challengegraphics.remove();
 });
 
 viewtoggle.addEventListener("click", function() {
@@ -43,36 +42,41 @@ viewtoggle.addEventListener("click", function() {
     } else {
         stylesheet.setAttribute("href", "analyzerstyles.css");
         fileContent.textContent = '';
-        document.body.appendChild(advancedgraphics);
-        taintedgraphics.remove()
+        if (checked) {
+            document.body.appendChild(taintedgraphics);
+        }
+        else {
+            document.body.appendChild(advancedgraphics);
+        }
     }
 });
 
 taintedtoggle.addEventListener('click', function() {
-    if (document.body.contains(advancedgraphics)) {
+    checked = !checked;
+    if (checked) {
         advancedgraphics.remove()
         document.body.appendChild(taintedgraphics)
-        generateAllDescriptions(taintedCharacterDescriptions, taintedMarkDescriptions)
-        checkDeliriumUnlock(false)
-    } else {
+        checkCharacterUnlocks(characterAchievementMap, markAchievementMap, false, deliriumMap, taintedDeliriumMap, fullMap)
+    } else if (!checked) {
         taintedgraphics.remove()
         document.body.appendChild(advancedgraphics)
-        generateAllDescriptions(characterDescriptions, markDescriptions);
     }
-    
-    generateAllDescriptions(
-        document.body.contains(taintedgraphics) ? taintedCharacterDescriptions : characterDescriptions,
-        document.body.contains(taintedgraphics) ? taintedMarkDescriptions : markDescriptions
-    );
 });
 
 characterButton.addEventListener('click', function() {
     challengegraphics.remove()
-    document.body.appendChild(advancedgraphics);
+    console.log(taintedtoggle)
+    if (checked) {
+        document.body.appendChild(taintedgraphics);
+    }
+    else {
+        document.body.appendChild(advancedgraphics);
+    }
 });
 
 challengeButton.addEventListener('click', function() {
     advancedgraphics.remove()
+    taintedgraphics.remove()
     document.body.appendChild(challengegraphics);
 });
 
@@ -106,36 +110,40 @@ function generateSheets(characterMap, markMap) {
 }
 
 function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, value, deliriumMap, taintedDeliriumMap, fullMap) {
-    for (const [position, characterId] of Object.entries(characterAchievementMap)) {
-        if (AchievementMap[position] === false) {
-            document.getElementById(characterId).classList.add('grayscale');
-        }
-    }
-
-    for (let i = 1; i <= 34; i++) {
-        for (const [position, markId] of Object.entries(markAchievementMap[i])) {
-            if (AchievementMap[position] === false) {
-                document.getElementById(markId).classList.add('grayscale');
-            }
-        }        
-    }
-    for (let i = 18; i <= 34; i++) {     
-        for (let j = 4; j > 1; j--) {
-            if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
-                document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
-            }
-        }
-
-        if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
-            document.getElementById(`mark-${i}-7`).classList.add('grayscale');
-        }
-    }
-
     if (value) {
+        for (const [position, characterId] of Object.entries(characterAchievementMap)) {
+            if (AchievementMap[position] === false) {
+                document.getElementById(characterId).classList.add('grayscale');
+            }
+        }
+    
+        for (let i = 1; i <= 34; i++) {
+            for (const [position, markId] of Object.entries(markAchievementMap[i])) {
+                if (AchievementMap[position] === false) {
+                    document.getElementById(markId).classList.add('grayscale');
+                }
+            }        
+        }
+        for (let i = 18; i <= 34; i++) {     
+            for (let j = 4; j > 1; j--) {
+                if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
+                    document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
+                }
+            }
+    
+            if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
+                document.getElementById(`mark-${i}-7`).classList.add('grayscale');
+            }
+        }
         for (const [position, paperId] of Object.entries(deliriumMap)) {
             if (!AchievementMap[position]) {
                 document.getElementById(paperId).classList.add('grayscale');
             } 
+        }
+        for (const [position, characterId] of Object.entries(fullMap)) {
+            if (AchievementMap[position]) {
+                document.getElementById(characterId).classList.add('golden');
+            }
         }
     }
     else {
@@ -143,12 +151,6 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             if (!AchievementMap[position]) {
                 document.getElementById(paperId).classList.add('grayscale');
             } 
-        }
-    }
-
-    for (const [position, characterId] of Object.entries(fullMap)) {
-        if (AchievementMap[position]) {
-            document.getElementById(characterId).classList.add('golden');
         }
     }
 
