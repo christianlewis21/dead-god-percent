@@ -10,8 +10,16 @@
     <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
     <div class="header">
         <div class="button buttontext" id="viewtoggle">Simple View</div>
-        <div class="button buttontext" id = 'characterbutton'>Characters</div>
-        <div class="button buttontext" id = 'challengebutton'>Challenges</div>
+        <div class="button buttontext" id = 'characterbutton'>Characters
+            <div class="progress-bar">
+                <div class="progress" id="characterbuttonbar"></div>
+            </div>
+        </div>
+        <div class="button buttontext" id = 'challengebutton'>Challenges
+            <div class="progress-bar">
+                <div class="progress" id="challengebuttonbar"></div>
+            </div>
+        </div>
         <div class="button buttontext" id = 'enemybutton'>Enemies</div>
         <div class="button buttontext" id = 'miscbutton'>Misc</div>
     </div>
@@ -38,5 +46,6 @@
     <pre id="fileContent"></pre>
     <script src="analyzer.js"></script>
     <script src="maps.js"></script>
+    <script src="progressbar.js"></script>
 </body>
 </html>

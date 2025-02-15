@@ -23,11 +23,13 @@
 
 .button {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 0.5%;
     background: #090909;
+    position: relative;
 }
 
 .buttontext {
@@ -97,4 +99,18 @@
 
 .golden {
     filter:sepia(1) hue-rotate(15deg) saturate(5);
+}
+
+.progress {
+    width: 1%;
+    height: 10px;
+    background-color: green;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: grey;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

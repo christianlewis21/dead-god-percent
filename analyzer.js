@@ -1,6 +1,9 @@
 const stylesheet = document.getElementById("stylesheet");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
 
+let characterProgress = 493;
+let challengeProgress = 45;
+
 const simpleButton = document.getElementById("viewtoggle");
 
 const characterButton = document.getElementById('characterbutton')
@@ -36,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
     taintedgraphics.remove();
     challengegraphics.remove();
     enemygraphics.remove();
+    setTimeout(generateCharacterButtonBar, 500);
+    setTimeout(generateChallengeButtonBar, 500);
 });
 
 simpleButton.addEventListener("click", function() {
@@ -116,13 +121,14 @@ function generateSheets(characterMap, markMap) {
                 <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
             `).join('')}
         </div>`).join('');
-}
+};
 
 function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, value, deliriumMap, taintedDeliriumMap, fullMap) {
     if (value) {
         for (const [position, characterId] of Object.entries(characterAchievementMap)) {
             if (AchievementMap[position] === false) {
                 document.getElementById(characterId).classList.add('grayscale');
+                characterProgress--;
             }
         }
     
@@ -130,6 +136,7 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             for (const [position, markId] of Object.entries(markAchievementMap[i])) {
                 if (AchievementMap[position] === false) {
                     document.getElementById(markId).classList.add('grayscale');
+                    characterProgress--;
                 }
             }        
         }
@@ -137,21 +144,33 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             for (let j = 4; j > 1; j--) {
                 if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
                     document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
+                    characterProgress--;
                 }
             }
     
             if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
                 document.getElementById(`mark-${i}-7`).classList.add('grayscale');
+                characterProgress--;
             }
         }
         for (const [position, paperId] of Object.entries(deliriumMap)) {
             if (!AchievementMap[position]) {
                 document.getElementById(paperId).classList.add('grayscale');
+                characterProgress--;
             } 
         }
         for (const [position, characterId] of Object.entries(fullMap)) {
             if (AchievementMap[position]) {
                 document.getElementById(characterId).classList.add('golden');
+            }
+            else {
+                characterProgress--;
+            }
+        }
+
+        for (const [position, challengeId] of Object.entries(challengeMap)) {
+            if (AchievementMap[position] === false) {
+                challengeProgress--;
             }
         }
     }
@@ -159,11 +178,12 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
         for (const [position, paperId] of Object.entries(taintedDeliriumMap)) {
             if (!AchievementMap[position]) {
                 document.getElementById(paperId).classList.add('grayscale');
+                characterProgress--;
             } 
         }
     }
 
-}
+};
 
 function generateDescriptions(characterDescriptions, markDescriptions) {
     document.querySelectorAll('.character').forEach(character => {
@@ -225,7 +245,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             markDescriptions.style.display = 'none';
         });
     })
-}
+};
 
 function generateChallengeProgress(challengeMap) {
     challengegraphics.innerHTML = '';
@@ -238,7 +258,7 @@ function generateChallengeProgress(challengeMap) {
                 </div>`;
         }
     }
-}
+};
 
 function generateEnemyProgress(enemyMap) {
     enemygraphics.innerHTML = '';
@@ -251,7 +271,15 @@ function generateEnemyProgress(enemyMap) {
                 </div>`;
         }
     }
-}
+};
+
+function getCharacterProgress() {
+    return characterProgress;
+};
+
+function getChallengeProgress() {
+    return challengeProgress;
+};
 
 const styles = `
   ${Array.from({ length: 34 }, (_, i) => i + 1).map(i => `
