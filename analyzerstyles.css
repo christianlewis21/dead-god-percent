@@ -105,12 +105,14 @@
     width: 1%;
     height: 10px;
     background-color: green;
+    border-radius: 25px;
 }
 
 .progress-bar {
     width: 75%;
     background-color: grey;
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 46px;
+    border-radius: 25px;
 }
