@@ -7,41 +7,43 @@
     <link rel="stylesheet" href="analyzerstyles.css" id="stylesheet">
 </head>
 <body>
-    <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
-    <div class="header">
-        <div class="button buttontext" id="viewtoggle">Simple View</div>
-        <div class="button buttontext" id = 'characterbutton'>Characters
-            <div class="progress-bar">
-                <div class="progress" id="characterbuttonbar"></div>
+    <div class="background-container"></div>
+        <div class="button"><a href="index.html" class="buttontext">Back to the Main Page</a></div>
+        <div class="header">
+            <div class="button buttontext" id="viewtoggle">Simple View</div>
+            <div class="button buttontext" id="characterbutton">Characters
+                <div class="progress-bar">
+                    <div class="progress" id="characterbuttonbar"></div>
+                </div>
+            </div>
+            <div class="button buttontext" id="challengebutton">Challenges
+                <div class="progress-bar">
+                    <div class="progress" id="challengebuttonbar"></div>
+                </div>
+            </div>
+            <div class="button buttontext" id="enemybutton">Enemies</div>
+            <div class="button buttontext" id="miscbutton">Misc</div>
+        </div>
+        <div class="info">
+            <div class="button-2 buttontext-2" id="taintedtoggle">Tainted Toggle</div>
+            <div class="character-progress-bar">
+                <div class="character-progress" id ="characterbar"></div>
             </div>
         </div>
-        <div class="button buttontext" id = 'challengebutton'>Challenges
-            <div class="progress-bar">
-                <div class="progress" id="challengebuttonbar"></div>
-            </div>
+        <div id="container">
+            <div class="charactersheets" id="advancedgraphics"></div>
+            <div class="charactersheets" id="taintedgraphics"></div>
+            <div class="hoverbox" id="characterdescriptions"></div>
+            <div class="hoverbox" id="markdescriptions"></div>
+            <div class="hoverbox" id="taintedcharacterdescriptions"></div>
+            <div class="hoverbox" id="taintedmarkdescriptions"></div>
         </div>
-        <div class="button buttontext" id = 'enemybutton'>Enemies</div>
-        <div class="button buttontext" id = 'miscbutton'>Misc</div>
-    </div>
-
-    <input type="checkbox" id="taintedtoggle"></input>
-
-    <div id="container">
-        <div class="charactersheets" id="advancedgraphics"></div>
-        <div class="charactersheets" id="taintedgraphics"></div>
-        <div class="hoverbox" id = 'characterdescriptions'></div>
-        <div class="hoverbox" id = 'markdescriptions'></div>
-        <div class="hoverbox" id = 'taintedcharacterdescriptions'></div>
-        <div class="hoverbox" id = 'taintedmarkdescriptions'></div>
-    </div>
-
-    <div id="challengecontainer">
-        <div class="challenges" id="challengegraphics"></div>
-    </div>
-
-    <div id = "enemycontainer">
-        <div class="enemies" id="enemygraphics"></div>
-    </div>
+        <div id="challengecontainer">
+            <div class="challenges" id="challengegraphics"></div>
+        </div>
+        <div id="enemycontainer">
+            <div class="enemies" id="enemygraphics"></div>
+        </div>
 
     <pre id="fileContent"></pre>
     <script src="analyzer.js"></script>

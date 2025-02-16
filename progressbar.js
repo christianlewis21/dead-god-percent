@@ -1,3 +1,6 @@
+document.getElementById('characterbar').addEventListener('click', function() {
+    console.log('test');
+})
 
 function generateCharacterButtonBar() {
     var max = 441;
@@ -5,14 +8,33 @@ function generateCharacterButtonBar() {
     var min = getCharacterProgress();
     var i = 0;
     var change = 100/max;
-    var characterButtonBar = document.getElementById('characterbuttonbar');
-    var width = 1;
+    var bar = document.getElementById('characterbuttonbar');
+    var width = 0;
     setInterval(frame, 2);
     function frame() {
         if (i < min) {
             i++;
             width += change
-            characterButtonBar.style.width = width + "%";
+            bar.style.width = width + "%";
+        }
+    }
+};
+
+function generateCharacterButtonBar() {
+    var max = 441;
+    var width = 0;
+    var min = getCharacterProgress();
+    var i = 0;
+    var change = 100/max;
+    var bar = document.getElementById('characterbar');
+    var width = 0;
+    setInterval(frame, 2);
+    function frame() {
+        if (i < min) {
+            i++;
+            width += change
+            bar.style.width = width + "%";
+            bar.innerHTML = i + "/441"
         }
     }
 };
@@ -23,14 +45,14 @@ function generateChallengeButtonBar() {
     var min = getChallengeProgress();
     var i = 0;
     var change = 100/max;
-    var challengeButtonBar = document.getElementById('challengebuttonbar');
-    var width = 1;
+    var bar = document.getElementById('challengebuttonbar');
+    var width = 0;
     setInterval(frame, 20);
     function frame() {
         if (i < min) {
             i++;
             width += change
-            challengeButtonBar.style.width = width + "%";
+            bar.style.width = width + "%";
         }
     }
 };

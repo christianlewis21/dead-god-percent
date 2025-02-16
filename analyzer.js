@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 simpleButton.addEventListener("click", function() {
-    stylesheet.setAttribute("href", "simple.css");
     advancedgraphics.remove()
     taintedgraphics.remove()
     enemygraphics.remove()
@@ -58,17 +57,16 @@ simpleButton.addEventListener("click", function() {
 taintedButton.addEventListener('click', function() {
     checked = !checked;
     if (checked) {
-        advancedgraphics.remove()
-        document.body.appendChild(taintedgraphics)
-        checkCharacterUnlocks(characterAchievementMap, markAchievementMap, false, deliriumMap, taintedDeliriumMap, fullMap)
-    } else if (!checked) {
-        taintedgraphics.remove()
-        document.body.appendChild(advancedgraphics)
+        advancedgraphics.remove();
+        document.body.appendChild(taintedgraphics);
+        checkCharacterUnlocks(characterAchievementMap, markAchievementMap, false, deliriumMap, taintedDeliriumMap, fullMap);
+    } else {
+        taintedgraphics.remove();
+        document.body.appendChild(advancedgraphics);
     }
 });
 
 characterButton.addEventListener('click', function() {
-    stylesheet.setAttribute("href", "analyzerstyles.css");
     fileContent.textContent = '';
     challengegraphics.remove()
     enemygraphics.remove()
@@ -82,7 +80,6 @@ characterButton.addEventListener('click', function() {
 });
 
 challengeButton.addEventListener('click', function() {
-    stylesheet.setAttribute("href", "analyzerstyles.css");
     fileContent.textContent = '';
     advancedgraphics.remove()
     taintedgraphics.remove()
