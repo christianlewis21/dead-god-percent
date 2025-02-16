@@ -189,7 +189,10 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             for (const [position, characterId] of Object.entries(characterAchievementMap)) {
                 if (characterId === character.id) {
                     const characterAchievementDescription = achievementsData[position].split(': ').pop();
-                    characterDescriptions.innerHTML = `<div>${characterAchievementDescription}</div>`;
+                    characterDescriptions.innerHTML = `
+                    <div class="character-img" src="/pictures/person.jpg"></div>
+                    <div class="character-description">${characterAchievementDescription}</div>
+                    `;
                     characterDescriptions.style.display = 'block';
                 }
             };
