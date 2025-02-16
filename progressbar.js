@@ -1,6 +1,6 @@
 
 function generateCharacterButtonBar() {
-    var max = 493;
+    var max = 441;
     var width = 0;
     var min = getCharacterProgress();
     var i = 0;
@@ -11,7 +11,6 @@ function generateCharacterButtonBar() {
     function frame() {
         if (i < min) {
             i++;
-            console.log(i)
             width += change
             characterButtonBar.style.width = width + "%";
         }
@@ -30,7 +29,6 @@ function generateChallengeButtonBar() {
     function frame() {
         if (i < min) {
             i++;
-            console.log(i)
             width += change
             challengeButtonBar.style.width = width + "%";
         }

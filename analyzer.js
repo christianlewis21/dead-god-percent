@@ -1,7 +1,7 @@
 const stylesheet = document.getElementById("stylesheet");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
 
-let characterProgress = 493;
+let characterProgress = 441;
 let challengeProgress = 45;
 
 const simpleButton = document.getElementById("viewtoggle");
@@ -144,13 +144,13 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             for (let j = 4; j > 1; j--) {
                 if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
                     document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
-                    characterProgress-= 5;
+                    characterProgress--;
                 }
             }
     
             if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
                 document.getElementById(`mark-${i}-7`).classList.add('grayscale');
-                characterProgress-= 2;
+                characterProgress--;
             }
         }
         for (const [position, paperId] of Object.entries(deliriumMap)) {
@@ -159,9 +159,11 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
                 characterProgress--;
             } 
         }
+        let count = 0
         for (const [position, characterId] of Object.entries(fullMap)) {
             if (AchievementMap[position]) {
                 document.getElementById(characterId).classList.add('golden');
+                count++;
             }
             else {
                 characterProgress--;
@@ -182,7 +184,6 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             } 
         }
     }
-
 };
 
 function generateDescriptions(characterDescriptions, markDescriptions) {
