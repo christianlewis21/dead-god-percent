@@ -219,7 +219,10 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                 if (position === `${j}-${k}`) {
                                     position = `${j}`;
                                     let markAchievementDescription = achievementsData[position].split(': ').pop();
-                                    markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
+                                    let markAchievementName = achievementsData[position].split(': ')[0];
+                                    markDescriptions.innerHTML = `
+                                    <div style="color: #c43c3c">${markAchievementName}</div>
+                                    <div>${markAchievementDescription}</div>`;
                                     markDescriptions.style.display = 'block'
                                 }
                             }
@@ -228,12 +231,18 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                             if (position === `${j}-1`) {
                                 position = `${j}`;
                                 let markAchievementDescription = achievementsData[position].split(': ').pop();
-                                markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
+                                let markAchievementName = achievementsData[position].split(': ')[0];
+                                markDescriptions.innerHTML = `
+                                <div style="color: #c43c3c">${markAchievementName}</div>
+                                <div>${markAchievementDescription}</div>`;
                                 markDescriptions.style.display = 'block'
                             }
                         }
                         let markAchievementDescription = achievementsData[position].split(': ').pop();
-                        markDescriptions.innerHTML = `<div>${markAchievementDescription}</div>`;
+                        let markAchievementName = achievementsData[position].split(': ')[0];
+                        markDescriptions.innerHTML = `
+                        <div style="color: #c43c3c">${markAchievementName}</div>
+                        <div>${markAchievementDescription}</div>`;
                         markDescriptions.style.display = 'block'
                     }
                 }
