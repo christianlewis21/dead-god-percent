@@ -45,6 +45,7 @@
     margin: 15px;
     background: #090909;
     user-select: none;
+    border-radius: 5px;
 }
 
 .footer {
