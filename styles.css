@@ -5,25 +5,32 @@
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 .footertext {
     font-size: 18px;
     color: rgb(255, 255, 255, 80%);
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    text-decoration: none;
 }
 
 .buttontext {
     font-size: 40px;
     color: rgba(255, 255, 255);
     font-family: 'Upheaval', sans-serif;
-    text-decoration: none;
 }
 
 .middle {

@@ -4,14 +4,6 @@
 }
 
 @font-face {
-    font-family: 'PF Tempesta Seven Condensed';
-    src: url('fonts/PFTempestaSevenCondensed.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: 'Montserrat';
     src: url('fonts/Montserrat-Bold.ttf');
     font-weight: normal;
@@ -25,6 +17,7 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    text-decoration: none;
 }
 
 html, body {
@@ -33,6 +26,11 @@ html, body {
     padding: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
+  
 .background-container {
     background-image: url('pictures/refs/backgrounds/basement.png');
     background-size: cover;
@@ -70,7 +68,6 @@ html, body {
     font-size: 300%;
     color: rgba(255, 255, 255);
     font-family: 'Upheaval', sans-serif;
-    text-decoration: none;
     text-align: center;
 }
 
@@ -121,26 +118,27 @@ html, body {
 .hoverbox {
     display: flex;
     position: absolute;
-    align-items: center;
-    justify-content: center;
     background-color: #100f0f;
     padding: 5px;
     z-index: 4;
     top: 25%;
     left: 5%;
     border-radius: 5px;
-    max-width: 100%;
+    max-width: 30%;
     color: #ababab;
     font-family: 'Montserrat', sans-serif;
     text-align: left;
+    border: solid 2px #920f0f;
 }
 
-.character-img {
+.hoverbox-img {
     float: left;
-    max-width: 150px;
-    max-height:150px;
+    display: flex;
 }
 
+.hoverbox-dsc {
+    display: flex;
+}
 .golden {
     filter: sepia(1) hue-rotate(15deg) saturate(5);
 }
@@ -181,7 +179,6 @@ html, body {
     font-size: 100%;
     color: rgba(255, 255, 255);
     font-family: 'Upheaval', sans-serif;
-    text-decoration: none;
     text-align: center;
 }
 

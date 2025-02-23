@@ -1,5 +1,4 @@
 document.getElementById('characterbar').addEventListener('click', function() {
-    console.log('test');
 })
 
 function generateCharacterButtonBar() {
@@ -20,7 +19,7 @@ function generateCharacterButtonBar() {
     }
 };
 
-function generateCharacterButtonBar() {
+function generateCharacterBar() {
     var max = 441;
     var width = 0;
     var min = getCharacterProgress();

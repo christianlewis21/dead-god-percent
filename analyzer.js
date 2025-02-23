@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
     enemygraphics.remove();
     setTimeout(generateCharacterButtonBar, 500);
     setTimeout(generateChallengeButtonBar, 500);
+    setTimeout(generateCharacterBar, 500);
 });
 
 simpleButton.addEventListener("click", function() {
@@ -191,9 +192,15 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                     const characterAchievementDescription = achievementsData[position].split(': ').pop();
                     const characterAchievementName = achievementsData[position].split(': ')[0];
                     characterDescriptions.innerHTML = `
-                    <img class="character-img" src="/pictures/refs/achievements/${characterId}.jpg"></img>
-                    <div class="character-description" style="color: #c43c3c">${characterAchievementName}</div>
-                    <div class="character-description">${characterAchievementDescription}</div>
+                    <div class="hoverbox-img">
+                        <img src="/pictures/refs/achievements/${characterId}.jpg"></img>
+                    </div>
+                    <div class="hoverbox-dsc">
+                        <ul>
+                            <li><div class="character-description" style="color: #c43c3c">${characterAchievementName}</div><li>
+                            <li><div class="character-description">${characterAchievementDescription}</div><li>
+                        <ul>
+                    </div>
                     `;
                     characterDescriptions.style.display = 'block';
                 }
@@ -221,8 +228,16 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                     let markAchievementDescription = achievementsData[position].split(': ').pop();
                                     let markAchievementName = achievementsData[position].split(': ')[0];
                                     markDescriptions.innerHTML = `
-                                    <div style="color: #c43c3c">${markAchievementName}</div>
-                                    <div>${markAchievementDescription}</div>`;
+                                    <div class="hoverbox-img">
+                                        <img src="/pictures/refs/achievements/${markId}.jpg"></img>
+                                    </div>
+                                    <div class="hoverbox-dsc">
+                                        <ul>
+                                            <li><div style="color: #c43c3c"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                            <li><div>${markAchievementDescription}</div><li>
+                                        <ul>
+                                    </div>
+                                    `;
                                     markDescriptions.style.display = 'block'
                                 }
                             }
@@ -233,16 +248,32 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                 let markAchievementDescription = achievementsData[position].split(': ').pop();
                                 let markAchievementName = achievementsData[position].split(': ')[0];
                                 markDescriptions.innerHTML = `
-                                <div style="color: #c43c3c">${markAchievementName}</div>
-                                <div>${markAchievementDescription}</div>`;
+                                <div class="hoverbox-img">
+                                        <img src="/pictures/refs/achievements/${markId}.jpg"></img>
+                                    </div>
+                                    <div class="hoverbox-dsc">
+                                        <ul>
+                                            <li><div style="color: #c43c3c"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                            <li><div>${markAchievementDescription}</div><li>
+                                        <ul>
+                                    </div>
+                                    `;
                                 markDescriptions.style.display = 'block'
                             }
                         }
                         let markAchievementDescription = achievementsData[position].split(': ').pop();
                         let markAchievementName = achievementsData[position].split(': ')[0];
                         markDescriptions.innerHTML = `
-                        <div style="color: #c43c3c">${markAchievementName}</div>
-                        <div>${markAchievementDescription}</div>`;
+                        <div class="hoverbox-img">
+                            <img src="/pictures/refs/achievements/${markId}.jpg"></img>
+                        </div>
+                        <div class="hoverbox-dsc">
+                            <ul>
+                                <li><div style="color: #c43c3c"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                <li><div>${markAchievementDescription}</div><li>
+                            <ul>
+                        </div>
+                        `;
                         markDescriptions.style.display = 'block'
                     }
                 }
