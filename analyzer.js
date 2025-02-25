@@ -185,11 +185,13 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
 };
 
 function generateDescriptions(characterDescriptions, markDescriptions) {
+    const overlay = document.getElementById('overlay');
+
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             for (const [position, characterId] of Object.entries(characterAchievementMap)) {
                 if (characterId === character.id) {
-                    const characterAchievementDescription = achievementsData[position].split(': ').pop();
+                    const characterAchievementDescription = achievementsData[position].split(': ')[1];
                     const characterAchievementName = achievementsData[position].split(': ')[0];
                     characterDescriptions.innerHTML = `
                     <div class="hoverbox-img">
@@ -207,15 +209,30 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             };
             characterDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
+            const hoverboxWidth = characterDescriptions.offsetWidth;
+            const viewportWidth = window.innerWidth;
+            const leftPosition = rect.left + 70 + hoverboxWidth > viewportWidth ? rect.left - hoverboxWidth - 10 : rect.left + 70;
             characterDescriptions.style.top = `${rect.top}px`;
-            characterDescriptions.style.left = `${rect.left + 70}px`;
+            characterDescriptions.style.left = `${leftPosition}px`;
+        });
+
+        character.addEventListener('click', function() {
+            overlay.classList.add('show'); // Add the 'show' class to fade in the overlay
+            characterDescriptions.style.zIndex = '10000'; // Ensure hoverbox is above overlay
+        });
+
+        overlay.addEventListener('click', function() {
+            overlay.classList.remove('show'); // Remove the 'show' class to fade out the overlay
+            characterDescriptions.style.display = 'none';
         });
 
         character.addEventListener('mouseleave', function() {
-            characterDescriptions.style.display = 'none';
+            if (!overlay.classList.contains('show')) {
+                characterDescriptions.style.display = 'none';
+            }
         });
     });
-    
+
     document.querySelectorAll('.mark').forEach(mark => {
         mark.addEventListener('mouseenter', function(event) {
             for (let i = 1; i <= 34; i++) {
@@ -225,7 +242,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                             for (let k = 3; k > 0; k--) {
                                 if (position === `${j}-${k}`) {
                                     position = `${j}`;
-                                    let markAchievementDescription = achievementsData[position].split(': ').pop();
+                                    let markAchievementDescription = achievementsData[position].split(': ')[1];
                                     let markAchievementName = achievementsData[position].split(': ')[0];
                                     markDescriptions.innerHTML = `
                                     <div class="hoverbox-img">
@@ -245,7 +262,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         for (let j = 618; j <635; j++) {
                             if (position === `${j}-1`) {
                                 position = `${j}`;
-                                let markAchievementDescription = achievementsData[position].split(': ').pop();
+                                let markAchievementDescription = achievementsData[position].split(': ')[1];
                                 let markAchievementName = achievementsData[position].split(': ')[0];
                                 markDescriptions.innerHTML = `
                                 <div class="hoverbox-img">
@@ -261,7 +278,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                 markDescriptions.style.display = 'block'
                             }
                         }
-                        let markAchievementDescription = achievementsData[position].split(': ').pop();
+                        let markAchievementDescription = achievementsData[position].split(': ')[1];
                         let markAchievementName = achievementsData[position].split(': ')[0];
                         markDescriptions.innerHTML = `
                         <div class="hoverbox-img">
@@ -280,15 +297,30 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             }
             markDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
+            const hoverboxWidth = markDescriptions.offsetWidth;
+            const viewportWidth = window.innerWidth;
+            const leftPosition = rect.left + 30 + hoverboxWidth > viewportWidth ? rect.left - hoverboxWidth - 10 : rect.left + 30;
             markDescriptions.style.top = `${rect.top}px`;
-            markDescriptions.style.left = `${rect.left + 30}px`;
+            markDescriptions.style.left = `${leftPosition}px`;
+        });
+
+        mark.addEventListener('click', function() {
+            overlay.classList.add('show'); // Add the 'show' class to fade in the overlay
+            markDescriptions.style.zIndex = '10000';
+        });
+
+        overlay.addEventListener('click', function() {
+            overlay.classList.remove('show'); // Remove the 'show' class to fade out the overlay
+            markDescriptions.style.display = 'none';
         });
 
         mark.addEventListener('mouseleave', function() {
-            markDescriptions.style.display = 'none';
+            if (!overlay.classList.contains('show')) {
+                markDescriptions.style.display = 'none';
+            }
         });
-    })
-};
+    });
+}
 
 function generateChallengeProgress(challengeMap) {
     challengegraphics.innerHTML = '';
