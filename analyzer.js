@@ -204,10 +204,9 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         <ul>
                     </div>
                     `;
-                    characterDescriptions.style.display = 'block';
+                    characterDescriptions.classList.add('show');
                 }
             };
-            characterDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = characterDescriptions.offsetWidth;
             const viewportWidth = window.innerWidth;
@@ -217,18 +216,18 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
         });
 
         character.addEventListener('click', function() {
-            overlay.classList.add('show'); // Add the 'show' class to fade in the overlay
-            characterDescriptions.style.zIndex = '10000'; // Ensure hoverbox is above overlay
+            overlay.classList.add('show');
+            characterDescriptions.style.zIndex = '10000';
         });
 
         overlay.addEventListener('click', function() {
-            overlay.classList.remove('show'); // Remove the 'show' class to fade out the overlay
-            characterDescriptions.style.display = 'none';
+            overlay.classList.remove('show');
+            characterDescriptions.classList.remove('show');
         });
 
         character.addEventListener('mouseleave', function() {
             if (!overlay.classList.contains('show')) {
-                characterDescriptions.style.display = 'none';
+                characterDescriptions.classList.remove('show');
             }
         });
     });
@@ -291,11 +290,10 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                             <ul>
                         </div>
                         `;
-                        markDescriptions.style.display = 'block'
+                        markDescriptions.classList.add('show');
                     }
                 }
             }
-            markDescriptions.style.display = 'block';
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = markDescriptions.offsetWidth;
             const viewportWidth = window.innerWidth;
@@ -305,18 +303,18 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
         });
 
         mark.addEventListener('click', function() {
-            overlay.classList.add('show'); // Add the 'show' class to fade in the overlay
+            overlay.classList.add('show');
             markDescriptions.style.zIndex = '10000';
         });
 
         overlay.addEventListener('click', function() {
-            overlay.classList.remove('show'); // Remove the 'show' class to fade out the overlay
-            markDescriptions.style.display = 'none';
+            overlay.classList.remove('show');
+            markDescriptions.classList.remove('show');
         });
 
         mark.addEventListener('mouseleave', function() {
             if (!overlay.classList.contains('show')) {
-                markDescriptions.style.display = 'none';
+                markDescriptions.classList.remove('show');
             }
         });
     });
