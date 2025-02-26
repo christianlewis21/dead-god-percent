@@ -254,7 +254,6 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
 
             let leftPosition = rect.left + 100;
             let topPosition = rect.bottom - 100;
-            console.log(topPosition)
             if (leftPosition + hoverboxWidth > viewportWidth) {
                 leftPosition = rect.left - hoverboxWidth - 10;
             }
@@ -264,7 +263,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             }
 
             if (topPosition > 780) {
-                topPosition = 750;
+                topPosition = 700;
             }
 
             characterDescriptions.style.top = `${topPosition}px`;
