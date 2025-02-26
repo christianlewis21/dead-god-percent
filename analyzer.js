@@ -250,9 +250,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             };
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = characterDescriptions.offsetWidth;
-            const hoverboxHeight = characterDescriptions.offsetHeight;
             const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
 
             let leftPosition = rect.left + 100;
             let topPosition = rect.bottom - 100;
@@ -356,9 +354,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             }
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = markDescriptions.offsetWidth;
-            const hoverboxHeight = markDescriptions.offsetHeight;
             const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
 
             let leftPosition = rect.left + 40;
             let topPosition = rect.bottom - 40;
