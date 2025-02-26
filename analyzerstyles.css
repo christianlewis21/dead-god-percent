@@ -152,6 +152,9 @@ ul {
     pointer-events: none;
 }
 
+.mark-hoverbox {
+    flex-direction: row !important; 
+}
 .hoverbox a {
     pointer-events: auto;
 }

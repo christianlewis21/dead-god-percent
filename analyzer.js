@@ -358,7 +358,6 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
 
             let leftPosition = rect.left + 40;
             let topPosition = rect.bottom - 40;
-            console.log(topPosition)
             if (leftPosition + hoverboxWidth > viewportWidth) {
                 leftPosition = rect.left - hoverboxWidth - 10;
             }
