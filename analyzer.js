@@ -189,30 +189,89 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
 
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
+            characterDescriptions.innerHTML = '';
             for (const [position, characterId] of Object.entries(characterAchievementMap)) {
                 if (characterId === character.id) {
                     const characterAchievementDescription = achievementsData[position].split(': ')[1];
                     const characterAchievementName = achievementsData[position].split(': ')[0];
                     characterDescriptions.innerHTML = `
-                    <div class="hoverbox-img">
-                        <img src="/pictures/refs/achievements/${characterId}.jpg"></img>
-                    </div>
-                    <div class="hoverbox-dsc">
-                        <ul>
-                            <li><div class="character-description" style="color: #c43c3c">${characterAchievementName}</div><li>
-                            <li><div class="character-description">${characterAchievementDescription}</div><li>
-                        <ul>
+                    <div class='achievement-container'>
+                        <div class="hoverbox-img">
+                            <img src="/pictures/refs/achievements/${characterId}.jpg"></img>
+                        </div>
+                        <div class="hoverbox-dsc">
+                            <ul>
+                                <li><div class="red"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${characterAchievementName}">${characterAchievementName}</a></div><li>
+                                <li><div>${characterAchievementDescription}</div><li>
+                            <ul>
+                        </div>
                     </div>
                     `;
-                    characterDescriptions.classList.add('show');
+                }
+            };
+            for (let [position, characterId] of Object.entries(deliriumMap)) {
+                characterId = characterId.split('-')[1] + '-' + characterId.split('-')[2]
+                if (characterId === character.id) {
+                    const deliriumAchievementDescription = achievementsData[position].split(': ')[1];
+                    const deliriumAchievementName = achievementsData[position].split(': ')[0];
+                    characterDescriptions.innerHTML += `
+                    <div class='achievement-container'>
+                        <div class="hoverbox-img">
+                            <img src="/pictures/refs/achievements/${characterId}-delirium.jpg"></img>
+                        </div>
+                        <div class="hoverbox-dsc">
+                            <ul>
+                                <li><div style='color: #920f0f'>${deliriumAchievementName}</div><li>
+                                <li><div>${deliriumAchievementDescription}</div><li>
+                            <ul>
+                        </div>
+                    </div>
+                    `;
+                }
+            };
+            for (const [position, characterId] of Object.entries(fullMap)) {
+                if (characterId === character.id) {
+                    const fullAchievementDescription = achievementsData[position].split(': ')[1];
+                    const fullAchievementName = achievementsData[position].split(': ')[0];
+                    characterDescriptions.innerHTML += `
+                    <div class='achievement-container'>
+                        <div class="hoverbox-img">
+                            <img src="/pictures/refs/achievements/${characterId}-full.jpg"></img>
+                        </div>
+                        <div class="hoverbox-dsc">
+                            <ul>
+                                <li><div class="golden">${fullAchievementName}</div><li>
+                                <li><div>${fullAchievementDescription}</div><li>
+                            <ul>
+                        </div>
+                    </div>
+                    `;
                 }
             };
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = characterDescriptions.offsetWidth;
+            const hoverboxHeight = characterDescriptions.offsetHeight;
             const viewportWidth = window.innerWidth;
-            const leftPosition = rect.left + 70 + hoverboxWidth > viewportWidth ? rect.left - hoverboxWidth - 10 : rect.left + 70;
-            characterDescriptions.style.top = `${rect.top}px`;
+            const viewportHeight = window.innerHeight;
+
+            let leftPosition = rect.left + 100;
+            let topPosition = rect.bottom - 100;
+            console.log(topPosition)
+            if (leftPosition + hoverboxWidth > viewportWidth) {
+                leftPosition = rect.left - hoverboxWidth - 10;
+            }
+
+            if (leftPosition < 0) {
+                leftPosition = 10;
+            }
+
+            if (topPosition > 780) {
+                topPosition = 750;
+            }
+
+            characterDescriptions.style.top = `${topPosition}px`;
             characterDescriptions.style.left = `${leftPosition}px`;
+            characterDescriptions.classList.add('show');
         });
 
         character.addEventListener('click', function() {
@@ -234,6 +293,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
 
     document.querySelectorAll('.mark').forEach(mark => {
         mark.addEventListener('mouseenter', function(event) {
+            markDescriptions.innerHTML = '';
             for (let i = 1; i <= 34; i++) {
                 for (let [position, markId] of Object.entries(markAchievementMap[i])) {
                     if (markId === mark.id) {
@@ -249,7 +309,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                     </div>
                                     <div class="hoverbox-dsc">
                                         <ul>
-                                            <li><div style="color: #c43c3c"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                            <li><div class='red'><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
                                             <li><div>${markAchievementDescription}</div><li>
                                         <ul>
                                     </div>
@@ -269,7 +329,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                     </div>
                                     <div class="hoverbox-dsc">
                                         <ul>
-                                            <li><div style="color: #c43c3c"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                            <li><div class='red'><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
                                             <li><div>${markAchievementDescription}</div><li>
                                         <ul>
                                     </div>
@@ -285,7 +345,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
-                                <li><div style="color: #c43c3c"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                <li><div class='red'><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
                                 <li><div>${markAchievementDescription}</div><li>
                             <ul>
                         </div>
@@ -296,9 +356,26 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             }
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = markDescriptions.offsetWidth;
+            const hoverboxHeight = markDescriptions.offsetHeight;
             const viewportWidth = window.innerWidth;
-            const leftPosition = rect.left + 30 + hoverboxWidth > viewportWidth ? rect.left - hoverboxWidth - 10 : rect.left + 30;
-            markDescriptions.style.top = `${rect.top}px`;
+            const viewportHeight = window.innerHeight;
+
+            let leftPosition = rect.left + 40;
+            let topPosition = rect.bottom - 40;
+            console.log(topPosition)
+            if (leftPosition + hoverboxWidth > viewportWidth) {
+                leftPosition = rect.left - hoverboxWidth - 10;
+            }
+
+            if (leftPosition < 0) {
+                leftPosition = 10;
+            }
+
+            if (topPosition > 800) {
+                topPosition = 790;
+            }
+
+            markDescriptions.style.top = `${topPosition}px`;
             markDescriptions.style.left = `${leftPosition}px`;
         });
 
