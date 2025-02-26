@@ -201,7 +201,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
-                                <li><div class="red"><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${characterAchievementName}">${characterAchievementName}</a></div><li>
+                                <li><div><a style='color:#c43c3c' href="https://bindingofisaacrebirth.wiki.gg/wiki/${characterAchievementName}">${characterAchievementName}</a></div><li>
                                 <li><div>${characterAchievementDescription}</div><li>
                             <ul>
                         </div>
@@ -221,7 +221,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
-                                <li><div style='color: #920f0f'>${deliriumAchievementName}</div><li>
+                                <li><div><a style='color: #920f0f' href="https://bindingofisaacrebirth.wiki.gg/wiki/${deliriumAchievementName}">${deliriumAchievementName}</a></div><li>
                                 <li><div>${deliriumAchievementDescription}</div><li>
                             <ul>
                         </div>
@@ -240,7 +240,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
-                                <li><div class="golden">${fullAchievementName}</div><li>
+                                <li><div><a style='color: #f7d401' href="https://bindingofisaacrebirth.wiki.gg/wiki/${fullAchievementName}">${fullAchievementName}</a></div><li>
                                 <li><div>${fullAchievementDescription}</div><li>
                             <ul>
                         </div>

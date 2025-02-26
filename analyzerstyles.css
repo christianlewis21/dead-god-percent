@@ -236,16 +236,6 @@ ul {
     font-family: 'Upheaval', sans-serif;
 }
 
-.red {
-    color:#c43c3c;
-    text-decoration: none;
-}
-
-.red a {
-    color: #c43c3c;
-    text-decoration: none;
-}
-
 .achievement-container {
     display: flex;
     flex-direction: row;
