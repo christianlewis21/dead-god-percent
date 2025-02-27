@@ -197,11 +197,11 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                     characterDescriptions.innerHTML = `
                     <div class='achievement-container'>
                         <div class="hoverbox-img">
-                            <img src="/pictures/refs/achievements/${characterId}.jpg"></img>
+                            <img src="pictures/refs/achievements/${characterId}.jpg"></img>
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
-                                <li><div><a style='color:#c43c3c' href="https://bindingofisaacrebirth.wiki.gg/wiki/${characterAchievementName}">${characterAchievementName}</a></div><li>
+                                <li><div><a style='color: #c43c3c' href="https://bindingofisaacrebirth.wiki.gg/wiki/${characterAchievementName}">${characterAchievementName}</a></div><li>
                                 <li><div>${characterAchievementDescription}</div><li>
                             <ul>
                         </div>
@@ -217,7 +217,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                     characterDescriptions.innerHTML += `
                     <div class='achievement-container'>
                         <div class="hoverbox-img">
-                            <img src="/pictures/refs/achievements/${characterId}-delirium.jpg"></img>
+                            <img src="pictures/refs/achievements/${characterId}-delirium.jpg"></img>
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
@@ -236,7 +236,7 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                     characterDescriptions.innerHTML += `
                     <div class='achievement-container'>
                         <div class="hoverbox-img">
-                            <img src="/pictures/refs/achievements/${characterId}-full.jpg"></img>
+                            <img src="pictures/refs/achievements/${characterId}-full.jpg"></img>
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
@@ -302,11 +302,11 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                     let markAchievementName = achievementsData[position].split(': ')[0];
                                     markDescriptions.innerHTML = `
                                     <div class="hoverbox-img">
-                                        <img src="/pictures/refs/achievements/${markId}.jpg"></img>
+                                        <img src="pictures/refs/achievements/${markId}.jpg"></img>
                                     </div>
                                     <div class="hoverbox-dsc">
                                         <ul>
-                                            <li><div class='red'><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                            <li><div><a style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
                                             <li><div>${markAchievementDescription}</div><li>
                                         <ul>
                                     </div>
@@ -322,11 +322,11 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                                 let markAchievementName = achievementsData[position].split(': ')[0];
                                 markDescriptions.innerHTML = `
                                 <div class="hoverbox-img">
-                                        <img src="/pictures/refs/achievements/${markId}.jpg"></img>
+                                        <img src="pictures/refs/achievements/${markId}.jpg"></img>
                                     </div>
                                     <div class="hoverbox-dsc">
                                         <ul>
-                                            <li><div class='red'><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                            <li><div><a style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
                                             <li><div>${markAchievementDescription}</div><li>
                                         <ul>
                                     </div>
@@ -338,11 +338,11 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                         let markAchievementName = achievementsData[position].split(': ')[0];
                         markDescriptions.innerHTML = `
                         <div class="hoverbox-img">
-                            <img src="/pictures/refs/achievements/${markId}.jpg"></img>
+                            <img src="pictures/refs/achievements/${markId}.jpg"></img>
                         </div>
                         <div class="hoverbox-dsc">
                             <ul>
-                                <li><div class='red'><a href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                <li><div><a style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
                                 <li><div>${markAchievementDescription}</div><li>
                             <ul>
                         </div>
