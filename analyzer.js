@@ -229,6 +229,28 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
                     `;
                 }
             };
+
+            for (let [position, characterId] of Object.entries(taintedDeliriumMap)) {
+                characterId = characterId.split('-')[1] + '-' + characterId.split('-')[2]
+                if (characterId === character.id) {
+                    const deliriumAchievementDescription = achievementsData[position].split(': ')[1];
+                    const deliriumAchievementName = achievementsData[position].split(': ')[0];
+                    characterDescriptions.innerHTML += `
+                    <div class='achievement-container'>
+                        <div class="hoverbox-img">
+                            <img src="pictures/refs/achievements/${characterId}-delirium.jpg"></img>
+                        </div>
+                        <div class="hoverbox-dsc">
+                            <ul>
+                                <li><div><a style='color: #920f0f' href="https://bindingofisaacrebirth.wiki.gg/wiki/${deliriumAchievementName}">${deliriumAchievementName}</a></div><li>
+                                <li><div>${deliriumAchievementDescription}</div><li>
+                            <ul>
+                        </div>
+                    </div>
+                    `;
+                }
+            };
+
             for (const [position, characterId] of Object.entries(fullMap)) {
                 if (characterId === character.id) {
                     const fullAchievementDescription = achievementsData[position].split(': ')[1];
