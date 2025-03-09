@@ -155,6 +155,7 @@ ul {
 .mark-hoverbox {
     flex-direction: row !important; 
 }
+
 .hoverbox a {
     pointer-events: auto;
 }
@@ -240,4 +241,21 @@ ul {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.infobar-background {
+    flex:1;
+    background: #100f0f;
+    position: absolute;
+    background-size: cover;
+    width: 100%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+}
+
+.infobar-background.show {
+    opacity: 1;
+    visibility: visible;
 }

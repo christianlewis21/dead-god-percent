@@ -6,6 +6,10 @@ let challengeProgress = 45;
 
 const simpleButton = document.getElementById("viewtoggle");
 
+const infoDiv = document.querySelector('.info');
+const infobar = document.getElementById('infobar')
+const infoBarDescription = document.getElementById('infobardescription')
+
 const characterButton = document.getElementById('characterbutton')
 const advancedgraphics = document.getElementById("advancedgraphics");
 const characterDescriptions = document.getElementById('characterdescriptions')
@@ -71,7 +75,9 @@ characterButton.addEventListener('click', function() {
     fileContent.textContent = '';
     challengegraphics.remove()
     enemygraphics.remove()
-    document.body.appendChild(taintedButton);
+    infoDiv.appendChild(taintedButton);
+    infoDiv.appendChild(infobar)
+
     if (checked) {
         document.body.appendChild(taintedgraphics);
     }
@@ -86,6 +92,7 @@ challengeButton.addEventListener('click', function() {
     taintedgraphics.remove()
     enemygraphics.remove()
     taintedButton.remove()
+    infobar.remove()
     document.body.appendChild(challengegraphics);
     generateChallengeProgress(challengeMap)
 });
@@ -98,6 +105,19 @@ enemyButton.addEventListener('click', function() {
     taintedButton.remove()
     document.body.appendChild(enemygraphics);
     generateEnemyProgress(enemyMap)
+});
+
+infobar.addEventListener('mouseenter', function() {
+    infoBarDescription.innerHTML = `
+    <div>
+        <h1>test</h1>
+    </div>
+    `;
+    infoBarDescription.classList.add('show');
+});
+
+infobar.addEventListener('mouseleave', function() {
+    infoBarDescription.classList.remove('show');
 });
 
 function generateSheets(characterMap, markMap) {
