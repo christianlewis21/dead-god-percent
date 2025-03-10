@@ -53,6 +53,7 @@ simpleButton.addEventListener("click", function() {
     taintedgraphics.remove()
     enemygraphics.remove()
     taintedButton.remove()
+    infobar.remove()
     const data = localStorage.getItem("processedData");
     if (data) {
         document.getElementById("fileContent").textContent = data;
@@ -107,16 +108,12 @@ enemyButton.addEventListener('click', function() {
     generateEnemyProgress(enemyMap)
 });
 
-infobar.addEventListener('mouseenter', function() {
-    infoBarDescription.innerHTML = `
-    <div>
-        <h1>test</h1>
-    </div>
-    `;
+infobar.addEventListener('click', function() {
+    generateInfoBox();
     infoBarDescription.classList.add('show');
 });
 
-infobar.addEventListener('mouseleave', function() {
+infoBarDescription.addEventListener('click', function() {
     infoBarDescription.classList.remove('show');
 });
 
@@ -173,7 +170,7 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
         }
         for (const [position, paperId] of Object.entries(deliriumMap)) {
             if (!AchievementMap[position]) {
-                document.getElementById(paperId).classList.add('grayscale');
+                document.getElementById(`paper-${paperId}`).classList.add('grayscale');
                 characterProgress--;
             } 
         }
@@ -197,7 +194,7 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
     else {
         for (const [position, paperId] of Object.entries(taintedDeliriumMap)) {
             if (!AchievementMap[position]) {
-                document.getElementById(paperId).classList.add('grayscale');
+                document.getElementById(`paper-${paperId}`).classList.add('grayscale');
                 characterProgress--;
             } 
         }
@@ -210,86 +207,35 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
     document.querySelectorAll('.character').forEach(character => {
         character.addEventListener('mouseenter', function(event) {
             characterDescriptions.innerHTML = '';
-            for (const [position, characterId] of Object.entries(characterAchievementMap)) {
-                if (characterId === character.id) {
-                    const characterAchievementDescription = achievementsData[position].split(': ')[1];
-                    const characterAchievementName = achievementsData[position].split(': ')[0];
-                    characterDescriptions.innerHTML = `
-                    <div class='achievement-container'>
-                        <div class="hoverbox-img">
-                            <img src="pictures/refs/achievements/${characterId}.jpg"></img>
-                        </div>
-                        <div class="hoverbox-dsc">
-                            <ul>
-                                <li><div><a style='color: #c43c3c' href="https://bindingofisaacrebirth.wiki.gg/wiki/${characterAchievementName}">${characterAchievementName}</a></div><li>
-                                <li><div>${characterAchievementDescription}</div><li>
-                            <ul>
-                        </div>
-                    </div>
-                    `;
-                }
-            };
-            for (let [position, characterId] of Object.entries(deliriumMap)) {
-                characterId = characterId.split('-')[1] + '-' + characterId.split('-')[2]
-                if (characterId === character.id) {
-                    const deliriumAchievementDescription = achievementsData[position].split(': ')[1];
-                    const deliriumAchievementName = achievementsData[position].split(': ')[0];
-                    characterDescriptions.innerHTML += `
-                    <div class='achievement-container'>
-                        <div class="hoverbox-img">
-                            <img src="pictures/refs/achievements/${characterId}-delirium.jpg"></img>
-                        </div>
-                        <div class="hoverbox-dsc">
-                            <ul>
-                                <li><div><a style='color: #920f0f' href="https://bindingofisaacrebirth.wiki.gg/wiki/${deliriumAchievementName}">${deliriumAchievementName}</a></div><li>
-                                <li><div>${deliriumAchievementDescription}</div><li>
-                            <ul>
-                        </div>
-                    </div>
-                    `;
-                }
-            };
+            const maps = [
+                { map: characterAchievementMap, suffix: '', color: '#c43c3c' },
+                { map: deliriumMap, suffix: '-delirium', color: '#920f0f' },
+                { map: taintedDeliriumMap, suffix: '-delirium', color: '#920f0f' },
+                { map: fullMap, suffix: '-full', color: '#f7d401' }
+            ];
 
-            for (let [position, characterId] of Object.entries(taintedDeliriumMap)) {
-                characterId = characterId.split('-')[1] + '-' + characterId.split('-')[2]
-                if (characterId === character.id) {
-                    const deliriumAchievementDescription = achievementsData[position].split(': ')[1];
-                    const deliriumAchievementName = achievementsData[position].split(': ')[0];
-                    characterDescriptions.innerHTML += `
-                    <div class='achievement-container'>
-                        <div class="hoverbox-img">
-                            <img src="pictures/refs/achievements/${characterId}-delirium.jpg"></img>
+            maps.forEach(({ map, suffix, color }) => {
+                for (const [position, characterId] of Object.entries(map)) {
+                    if (characterId === character.id) {
+                        const achievementDescription = achievementsData[position].split(': ')[1];
+                        const achievementName = achievementsData[position].split(': ')[0];
+                        characterDescriptions.innerHTML += `
+                        <div class='achievement-container'>
+                            <div class="hoverbox-img">
+                                <img src="pictures/refs/achievements/${characterId}${suffix}.jpg"></img>
+                            </div>
+                            <div class="hoverbox-dsc">
+                                <ul>
+                                    <li><a target='_blank' style='color: ${color}' href="https://bindingofisaacrebirth.wiki.gg/wiki/${achievementName}">${achievementName}</a><li>
+                                    <li><div>${achievementDescription}</div><li>
+                                <ul>
+                            </div>
                         </div>
-                        <div class="hoverbox-dsc">
-                            <ul>
-                                <li><div><a style='color: #920f0f' href="https://bindingofisaacrebirth.wiki.gg/wiki/${deliriumAchievementName}">${deliriumAchievementName}</a></div><li>
-                                <li><div>${deliriumAchievementDescription}</div><li>
-                            <ul>
-                        </div>
-                    </div>
-                    `;
+                        `;
+                    }
                 }
-            };
+            })
 
-            for (const [position, characterId] of Object.entries(fullMap)) {
-                if (characterId === character.id) {
-                    const fullAchievementDescription = achievementsData[position].split(': ')[1];
-                    const fullAchievementName = achievementsData[position].split(': ')[0];
-                    characterDescriptions.innerHTML += `
-                    <div class='achievement-container'>
-                        <div class="hoverbox-img">
-                            <img src="pictures/refs/achievements/${characterId}-full.jpg"></img>
-                        </div>
-                        <div class="hoverbox-dsc">
-                            <ul>
-                                <li><div><a style='color: #f7d401' href="https://bindingofisaacrebirth.wiki.gg/wiki/${fullAchievementName}">${fullAchievementName}</a></div><li>
-                                <li><div>${fullAchievementDescription}</div><li>
-                            <ul>
-                        </div>
-                    </div>
-                    `;
-                }
-            };
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = characterDescriptions.offsetWidth;
             const viewportWidth = window.innerWidth;
@@ -335,64 +281,31 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
             markDescriptions.innerHTML = '';
             for (let i = 1; i <= 34; i++) {
                 for (let [position, markId] of Object.entries(markAchievementMap[i])) {
+
                     if (markId === mark.id) {
-                        for (let j = 548; j <= 580; j+=2) {
-                            for (let k = 3; k > 0; k--) {
-                                if (position === `${j}-${k}`) {
-                                    position = `${j}`;
-                                    let markAchievementDescription = achievementsData[position].split(': ')[1];
-                                    let markAchievementName = achievementsData[position].split(': ')[0];
-                                    markDescriptions.innerHTML = `
-                                    <div class="hoverbox-img">
-                                        <img src="pictures/refs/achievements/${markId}.jpg"></img>
-                                    </div>
-                                    <div class="hoverbox-dsc">
-                                        <ul>
-                                            <li><div><a style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
-                                            <li><div>${markAchievementDescription}</div><li>
-                                        <ul>
-                                    </div>
-                                    `;
-                                    markDescriptions.style.display = 'block'
-                                }
-                            }
+                        if (position.match(/^\d{3}-\d$/)) {
+                            position = position.split('-')[0];
                         }
-                        for (let j = 618; j <635; j++) {
-                            if (position === `${j}-1`) {
-                                position = `${j}`;
-                                let markAchievementDescription = achievementsData[position].split(': ')[1];
-                                let markAchievementName = achievementsData[position].split(': ')[0];
-                                markDescriptions.innerHTML = `
-                                <div class="hoverbox-img">
-                                        <img src="pictures/refs/achievements/${markId}.jpg"></img>
-                                    </div>
-                                    <div class="hoverbox-dsc">
-                                        <ul>
-                                            <li><div><a style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
-                                            <li><div>${markAchievementDescription}</div><li>
-                                        <ul>
-                                    </div>
-                                    `;
-                                markDescriptions.style.display = 'block'
-                            }
-                        }
-                        let markAchievementDescription = achievementsData[position].split(': ')[1];
-                        let markAchievementName = achievementsData[position].split(': ')[0];
+                        const markAchievementDescription = achievementsData[position].split(': ')[1];
+                        const markAchievementName = achievementsData[position].split(': ')[0];
+
                         markDescriptions.innerHTML = `
-                        <div class="hoverbox-img">
-                            <img src="pictures/refs/achievements/${markId}.jpg"></img>
-                        </div>
-                        <div class="hoverbox-dsc">
-                            <ul>
-                                <li><div><a style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
-                                <li><div>${markAchievementDescription}</div><li>
-                            <ul>
-                        </div>
-                        `;
-                        markDescriptions.classList.add('show');
+                            <div class="hoverbox-img">
+                                <img src="pictures/refs/achievements/${markId}.jpg"></img>
+                            </div>
+                            <div class="hoverbox-dsc">
+                                <ul>
+                                    <li><div><a target='_blank' style="color: #c43c3c" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a></div><li>
+                                    <li><div>${markAchievementDescription}</div><li>
+                                <ul>
+                            </div>
+                            `;
+                            markDescriptions.style.display = 'block';
+                            markDescriptions.classList.add('show');
                     }
                 }
             }
+
             const rect = event.target.getBoundingClientRect();
             const hoverboxWidth = markDescriptions.offsetWidth;
             const viewportWidth = window.innerWidth;
@@ -466,6 +379,46 @@ function getCharacterProgress() {
 function getChallengeProgress() {
     return challengeProgress;
 };
+
+function generateInfoBox() {
+    infoBarDescription.innerHTML = '';
+    const maps = [
+        { map: characterAchievementMap, color: '#c43c3c' },
+        { map: deliriumMap, color: '#920f0f' },
+        { map: taintedDeliriumMap, color: '#920f0f' },
+        { map: fullMap, color: '#f7d401' },
+    ];
+    
+    maps.forEach(({ map, color }) => {
+        for (const [position] of Object.entries(map)) {
+            const achievementDescription = achievementsData[position].split(': ')[1];
+            const achievementName = achievementsData[position].split(': ')[0];
+            if (AchievementMap[position] == false) {
+                infoBarDescription.innerHTML += `
+                <a target='_blank' style='color: ${color}' href="https://bindingofisaacrebirth.wiki.gg/wiki/${achievementName}">${achievementName}</a>
+                <div>${achievementDescription}</div>
+                `;
+            }
+        }
+    })
+
+    for (let i = 1; i <= 34; i++) {
+        for (let [position] of Object.entries(markAchievementMap[i])) {
+            color = ' #c43c3c'
+            if (position.match(/^\d{3}-\d$/)) {
+                position = position.split('-')[0];
+            }
+            const markAchievementDescription = achievementsData[position].split(': ')[1];
+            const markAchievementName = achievementsData[position].split(': ')[0];
+            if (AchievementMap[position] == false) {
+                infoBarDescription.innerHTML += `
+                    <a target='_blank' style="color: ${color}" href="https://bindingofisaacrebirth.wiki.gg/wiki/${markAchievementName}">${markAchievementName}<a>
+                    <div>${markAchievementDescription}</div>
+                    `;
+            }
+        }
+    }
+}
 
 const styles = `
   ${Array.from({ length: 34 }, (_, i) => i + 1).map(i => `

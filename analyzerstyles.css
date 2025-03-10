@@ -249,10 +249,15 @@ ul {
     position: absolute;
     background-size: cover;
     width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    color: #ababab;
+    font-size: 14px;
     z-index: 10000;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s;
+    overflow: auto;
+    max-height: 86.1vh;
 }
 
 .infobar-background.show {
