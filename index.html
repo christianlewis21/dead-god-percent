@@ -9,31 +9,37 @@
     </head>
     <body>
         <section class="showcase">
-            <div class="header"></div>
-            <img src="pictures/deadgod.png">
             <video src="pictures/background.mov" muted loop autoplay></video>
         </section>
-            <div class="middle">
-                <div class="button" ><a href="speedrun.html" class="buttontext">Speedrun</a></div>
-                <div class="button"><label class="buttontext" for="myFile">Choose File</label></div>
-                    <input type="file" id="myFile" style="display: none;" accept=".dat"></input>
+        <div class="header">
+            <img class='logo' src="pictures/deadgod.png">
+            <h1>Dead God Percent</h1>
+            <!-- <section class="githublink">
+                <ul><a href="https://github.com/christianlewis21/dead-god-percent" target="_blank"><img src ="pictures/githublogo.png" width="15" height="15"></a></ul>
+            </section>
+            <section class="discordlink">
+                <ul><img src="pictures/discordlogo.png" width="13" height="10"></ul>
+                <ul><a><h1>chriztian.</h1></a></ul>
+            </section> -->
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="middle">
+            <label class="button" for="myFile">
+                <input type="file" id="myFile" style="display: none;" accept=".dat"></input>
+                <span class="buttontext">Choose File</span>
+            </label>
+            <!-- <div class="horizontal-buttons">
                 <div class="button"><a href="tips.html" class="buttontext">Tips</a></div>
-            </div>
-            <div class="footer">
-                <div class="links">
-                    <section class="githublink">
-                        <ul><img src ="pictures/githublogo.png" width="15" height="15"></ul>
-                        <ul><a href="https://github.com/christianlewis21/dead-god-percent" target="_blank" class="footertext">Github</a></ul>
-                    </section>
-                    <section class="discordlink">
-                        <ul><img src="pictures/discordlogo.png" width="13" height="10"></ul>
-                        <ul><a class="footertext">chriztian.</a></ul>
-                    </section>
-                    <section class="warning">
-                        <ul><a class='footertext warning'>CURRENTLY ONLY WORKS WITH REPENTANCE+ FILES | GO TO C:\Program Files(x86)\Steam\userdata\[SteamID]\250900\remote\rep+persistentgamedata[1,2,3].dat FOR YOUR SAVE FILE</a></ul>
-                    </section>
-                </div>
-            </div>
-            <script src="script.js" defer></script>
+                <div class="button" ><a href="speedrun.html" class="buttontext">Speedrun</a></div>
+            </div> -->
+        </div>
+        <section class="warning">
+            <ul><a><h1 class='warning'>CURRENTLY ONLY WORKS WITH REPENTANCE+ FILES | GO TO C:\Program Files(x86)\Steam\userdata\[SteamID]\250900\remote\rep+persistentgamedata[1,2,3].dat FOR YOUR SAVE FILE</h1></a></ul>
+        </section>
+        <script src="script.js" defer></script>
     </body>
 </html>
