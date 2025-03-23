@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 localStorage.setItem("processedData", output);
                 localStorage.setItem("positionBooleanMap", JSON.stringify(positionBooleanMap));
-                window.location.href = 'menu.html';
+                window.location.href = 'analyzer.html';
             };
             reader.readAsArrayBuffer(file);
         } else {
