@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Progress</title>
+    <link rel="stylesheet" href="character.css" id="stylesheet">
+</head>
+<body>
+    <div class="background-container"></div>
+    <div class="overlay" id="overlay"></div>
+    <div class="button"><a href="menu.html" class="buttontext">Back to the Main Page</a></div>
+    <div class="info">
+        <div class="button-2 buttontext-2" id="taintedtoggle">Tainted Toggle</div>
+        <div class="character-progress-bar" id="infobar">
+            <div class="character-progress" id ="characterbar"></div>
+        </div>
+        <div class='infobar-background' id="infobardescription"></div>
+    </div>
+    <div id="container">
+        <div class="charactersheets" id="advancedgraphics"></div>
+        <div class="charactersheets" id="taintedgraphics"></div>
+        <div class="hoverbox" id="characterdescriptions"></div>
+        <div class="hoverbox mark-hoverbox" id="markdescriptions"></div>
+        <div class="hoverbox" id="taintedcharacterdescriptions"></div>
+        <div class="hoverbox mark-hoverbox" id="taintedmarkdescriptions"></div>
+    </div>
+    
+    <script src="character.js"></script>
+    <script src="maps.js"></script>
+    <script src="progressbar.js"></script>
+</body>
+</html>

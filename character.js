@@ -20,12 +20,6 @@ const taintedgraphics = document.getElementById("taintedgraphics");
 const taintedCharacterDescriptions = document.getElementById('taintedcharacterdescriptions')
 const taintedMarkDescriptions = document.getElementById('taintedmarkdescriptions')
 
-const challengeButton = document.getElementById('challengebutton')
-const challengegraphics = document.getElementById('challengegraphics')
-
-const enemyButton = document.getElementById('enemybutton')
-const enemygraphics = document.getElementById('enemygraphics')
-
 let checked = false;
 
 let achievementsData = {};
@@ -41,23 +35,9 @@ document.addEventListener("DOMContentLoaded", function() {
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap, true, deliriumMap, taintedDeliriumMap, fullMap)
     generateDescriptions(characterDescriptions, markDescriptions)
     taintedgraphics.remove();
-    challengegraphics.remove();
-    enemygraphics.remove();
     setTimeout(generateCharacterButtonBar, 500);
     setTimeout(generateChallengeButtonBar, 500);
     setTimeout(generateCharacterBar, 500);
-});
-
-simpleButton.addEventListener("click", function() {
-    advancedgraphics.remove()
-    taintedgraphics.remove()
-    enemygraphics.remove()
-    taintedButton.remove()
-    infobar.remove()
-    const data = localStorage.getItem("processedData");
-    if (data) {
-        document.getElementById("fileContent").textContent = data;
-    }
 });
 
 taintedButton.addEventListener('click', function() {
@@ -70,42 +50,6 @@ taintedButton.addEventListener('click', function() {
         taintedgraphics.remove();
         document.body.appendChild(advancedgraphics);
     }
-});
-
-characterButton.addEventListener('click', function() {
-    fileContent.textContent = '';
-    challengegraphics.remove()
-    enemygraphics.remove()
-    infoDiv.appendChild(taintedButton);
-    infoDiv.appendChild(infobar)
-
-    if (checked) {
-        document.body.appendChild(taintedgraphics);
-    }
-    else {
-        document.body.appendChild(advancedgraphics);
-    }
-});
-
-challengeButton.addEventListener('click', function() {
-    fileContent.textContent = '';
-    advancedgraphics.remove()
-    taintedgraphics.remove()
-    enemygraphics.remove()
-    taintedButton.remove()
-    infobar.remove()
-    document.body.appendChild(challengegraphics);
-    generateChallengeProgress(challengeMap)
-});
-
-enemyButton.addEventListener('click', function() {
-    stylesheet.setAttribute("href", "analyzerstyles.css");
-    fileContent.textContent = '';
-    advancedgraphics.remove()
-    taintedgraphics.remove()
-    taintedButton.remove()
-    document.body.appendChild(enemygraphics);
-    generateEnemyProgress(enemyMap)
 });
 
 infobar.addEventListener('click', function() {
@@ -345,32 +289,6 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
         });
     });
 }
-
-function generateChallengeProgress(challengeMap) {
-    challengegraphics.innerHTML = '';
-    for (const [position, challengeId] of Object.entries(challengeMap)) {
-        if (AchievementMap[position] === false) {
-            let challengeAchievementDescription = achievementsData[position].split(': ').pop();
-            challengegraphics.innerHTML += `
-                <div class="challenges">
-                    <h1>${challengeAchievementDescription}</h1>
-                </div>`;
-        }
-    }
-};
-
-function generateEnemyProgress(enemyMap) {
-    enemygraphics.innerHTML = '';
-    for (const [position, enemyId] of Object.entries(enemyMap)) {
-        if (AchievementMap[position] === false) {
-            let enemyAchievementDescription = achievementsData[position].split(': ').pop();
-            enemygraphics.innerHTML += `
-                <div class="enemies">
-                    <h1>${enemyAchievementDescription}</h1>
-                </div>`;
-        }
-    }
-};
 
 function getCharacterProgress() {
     return characterProgress;

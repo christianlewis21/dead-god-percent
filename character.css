@@ -61,14 +61,6 @@ ul {
     opacity: 1;
 }
 
-.header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-}
-
 .button {
     display: flex;
     flex-direction: column;
