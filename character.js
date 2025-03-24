@@ -2,7 +2,6 @@ const stylesheet = document.getElementById("stylesheet");
 const AchievementMap = JSON.parse(localStorage.getItem("positionBooleanMap"));
 
 let characterProgress = 441;
-let challengeProgress = 45;
 
 const simpleButton = document.getElementById("viewtoggle");
 
@@ -35,8 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap, true, deliriumMap, taintedDeliriumMap, fullMap)
     generateDescriptions(characterDescriptions, markDescriptions)
     taintedgraphics.remove();
-    setTimeout(generateCharacterButtonBar, 500);
-    setTimeout(generateChallengeButtonBar, 500);
     setTimeout(generateCharacterBar, 500);
 });
 
@@ -126,12 +123,6 @@ function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, valu
             }
             else {
                 characterProgress--;
-            }
-        }
-
-        for (const [position, challengeId] of Object.entries(challengeMap)) {
-            if (AchievementMap[position] === false) {
-                challengeProgress--;
             }
         }
     }

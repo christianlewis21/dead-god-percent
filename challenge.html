@@ -8,12 +8,42 @@
 </head>
 <body>
     <div class="background-container"></div>
-    <div class="button"><a href="analyzer.html" class="buttontext">Back to the Main Page</a></div>
-    <div id="challengecontainer">
-        <div class="challenges" id="challengegraphics"></div>
+    <div class="container">
+        <div class="container-2">
+            <div class="menu">
+                <img class="menu-background" src="pictures/button-menu.png">
+                <div class="menu-container">
+                    <button class="button-text"><a href="analyzer.html">MENU</a></button>
+                    <button class="button-text"><a href="character.html">CHARACTERS</a></button>
+                    <button class="button-text"><a href="enemy.html">ENEMIES</a></button>
+                    <button class="button-text"><a href="misc.html">MISC</a></button>
+                </div>
+            </div>
+            <div class="progress-menu">
+                <img class="menu-background" src="pictures/progressmenu.png">
+                <div class="content">
+                    <div class="button-text">Challenge Progress</div>
+                    <div class="progress-bar">
+                        <div class="progress" id="challengebar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="challenge-menu">
+            <img class="challenge-background" src="pictures/challengepaper.png">
+            <div class="challenge-container" id="challengecontainer">
+                <div class="text" id="challengegraphics"></div>
+            </div>
+        </div>
+        <div class="description-menu">
+            <img class="menu-background" src="pictures/descriptionmenu.png">
+            <!-- <div class="menu-container">
+            </div> -->
+        </div>
     </div>
 
     <script src="challenge.js"></script>
     <script src="maps.js"></script>
+    <script src="progressbar.js"></script>
 </body>
 </html>
