@@ -1,6 +1,9 @@
 @font-face {
-    font-family: 'Upheaval';
-    src: url('fonts/upheavtt.ttf');
+    font-family: 'TeamMeat';
+    src: url('fonts/Teammeat.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -26,12 +29,18 @@ html, body {
     padding: 0;
 }
 
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
 ul {
     list-style-type: none;
 }
 
 .background-container {
-    background-image: url('pictures/refs/backgrounds/basement.png');
+    background-image: url('pictures/refs/backgrounds/titlemenu.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -61,39 +70,38 @@ ul {
     opacity: 1;
 }
 
-.button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0.5%;
-    background: #090909;
-    position: relative;
+button {
+    flex: 1;
+    background: none;
+    border: none;
 }
 
-.buttontext {
-    flex: 1;
-    font-size: 300%;
-    color: rgba(255, 255, 255);
-    font-family: 'Upheaval', sans-serif;
-    text-align: center;
+.button-text {
+    font-size: 45px;
+    color: #45393b;
+    font-family: 'TeamMeat', sans-serif;
+}
+
+.button-text a {
+    color: inherit;
+    text-decoration: none;
 }
 
 .charactersheets {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5%;
-    align-items: center;
-    justify-content: center;
-    width: auto;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 
 .completion {
-    position: relative;
-    height: 100%;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    height: auto;
+    width: 100%;
 }
 
 .character {
@@ -196,21 +204,6 @@ ul {
     align-items: left;
 }
 
-.button-2 {
-    width: 10%;
-    padding: 0.1%;
-    background: #090909;
-    position: relative;
-    z-index: 10;
-}
-
-.buttontext-2 {
-    font-size: 100%;
-    color: rgba(255, 255, 255);
-    font-family: 'Upheaval', sans-serif;
-    text-align: center;
-}
-
 .character-progress-bar {
     width: 90%;
     height: 100%;
@@ -226,7 +219,7 @@ ul {
     background-color: #920f0f;
     text-align: center;
     color: white;
-    font-family: 'Upheaval', sans-serif;
+    font-family: 'TeamMeat', sans-serif;
 }
 
 .achievement-container {
@@ -255,4 +248,32 @@ ul {
 .infobar-background.show {
     opacity: 1;
     visibility: visible;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 9vh;
+    left: 1vw;
+    width: 26%;
+    height: 20%;
+    transform: rotate(-8deg);
+}
+
+.menu-background {
+    position: relative;
+    height: 100%;
+    width: auto;
+}
+
+.menu {
+    flex: 0 0 20%;
+    top: 0;
+    height: 40%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }

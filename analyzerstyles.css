@@ -75,8 +75,8 @@ button {
 .menu-container {
     display: flex;
     position: absolute;
-    left: 71.5vw;
-    top: 65vh;
+    left: 71vw;
+    top: 61.5vh;
     width: 15vw;
     height: 30vh;
     justify-content: center;

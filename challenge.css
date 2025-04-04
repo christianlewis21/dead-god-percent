@@ -1,4 +1,3 @@
-/* challenge.css */
 @font-face {
     font-family: 'TeamMeat';
     src: url('fonts/Teammeat.ttf');
@@ -116,6 +115,7 @@ button {
 .description-menu {
     height: 99%;
     width: fit-content;
+    z-index: 10000;
 }
 
 .progress-menu {
@@ -141,4 +141,29 @@ button {
     position: absolute;
     top: 50vh;
     left: 5vh;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9998;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.challenge-description {
+    position: absolute;
+    top: 10vh;
+    left: 135vh;
+    transform: rotate(2deg);
 }

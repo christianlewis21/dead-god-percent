@@ -9,21 +9,25 @@
 <body>
     <div class="background-container"></div>
     <div class="overlay" id="overlay"></div>
-    <div class="button"><a href="analyzer.html" class="buttontext">Back to the Main Page</a></div>
     <div class="info">
-        <div class="button-2 buttontext-2" id="taintedtoggle">Tainted Toggle</div>
         <div class="character-progress-bar" id="infobar">
             <div class="character-progress" id ="characterbar"></div>
         </div>
         <div class='infobar-background' id="infobardescription"></div>
     </div>
+    <div class="menu">
+        <img class="menu-background" src="pictures/button-menu.png">
+        <div class="menu-container">
+            <button class="button-text"><a href="analyzer.html">MENU</a></button>
+            <button class="button-text"><a href="challenge.html">CHALLENGES</a></button>
+            <button class="button-text"><a href="enemy.html">ENEMIES</a></button>
+            <button class="button-text"><a href="misc.html">MISC</a></button>
+        </div>
+    </div>
     <div id="container">
         <div class="charactersheets" id="advancedgraphics"></div>
-        <div class="charactersheets" id="taintedgraphics"></div>
         <div class="hoverbox" id="characterdescriptions"></div>
         <div class="hoverbox mark-hoverbox" id="markdescriptions"></div>
-        <div class="hoverbox" id="taintedcharacterdescriptions"></div>
-        <div class="hoverbox mark-hoverbox" id="taintedmarkdescriptions"></div>
     </div>
     
     <script src="character.js"></script>

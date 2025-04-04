@@ -14,11 +14,6 @@ const advancedgraphics = document.getElementById("advancedgraphics");
 const characterDescriptions = document.getElementById('characterdescriptions')
 const markDescriptions = document.getElementById('markdescriptions')
 
-const taintedButton = document.getElementById("taintedtoggle");
-const taintedgraphics = document.getElementById("taintedgraphics");
-const taintedCharacterDescriptions = document.getElementById('taintedcharacterdescriptions')
-const taintedMarkDescriptions = document.getElementById('taintedmarkdescriptions')
-
 let checked = false;
 
 let achievementsData = {};
@@ -33,20 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     generateSheets(characterMap, markMap);
     checkCharacterUnlocks(characterAchievementMap, markAchievementMap, true, deliriumMap, taintedDeliriumMap, fullMap)
     generateDescriptions(characterDescriptions, markDescriptions)
-    taintedgraphics.remove();
-    setTimeout(generateCharacterBar, 500);
-});
-
-taintedButton.addEventListener('click', function() {
-    checked = !checked;
-    if (checked) {
-        advancedgraphics.remove();
-        document.body.appendChild(taintedgraphics);
-        checkCharacterUnlocks(characterAchievementMap, markAchievementMap, false, deliriumMap, taintedDeliriumMap, fullMap);
-    } else {
-        taintedgraphics.remove();
-        document.body.appendChild(advancedgraphics);
-    }
+    // setTimeout(generateCharacterBar, 500);
 });
 
 infobar.addEventListener('click', function() {
@@ -59,25 +41,36 @@ infoBarDescription.addEventListener('click', function() {
 });
 
 function generateSheets(characterMap, markMap) {
-    advancedgraphics.innerHTML = characterMap.slice(0, 17).map(character => `
-        <div class="completion">
-            <img class='sheet' id ='paper-character-${character.id}' src="pictures/refs/marks/deliriumpaper.png">
-            <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
-            ${markMap.map(mark => `
-                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
-            `).join('')}
-        </div>`).join('')
-        
+    const gridOrder = [
+        [1, 18, 6, 23, 11, 28, 16, 33],
+        [2, 19, 7, 24, 12, 29, 17, 34],
+        [3, 20, 8, 25, 13, 30],
+        [4, 21, 9, 26, 14, 31],
+        [5, 22, 10, 27, 15, 32]
+    ];
 
-    taintedgraphics.innerHTML = characterMap.slice(17).map(character => `
-        <div class="completion">
-            <img class='sheet' id ='paper-character-${character.id}' src="pictures/refs/marks/Tdeliriumpaper.png">
-            <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
-            ${markMap.slice(0,11).map(mark => `
-                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
-            `).join('')}
-        </div>`).join('');
-};
+    advancedgraphics.innerHTML = '';
+
+    gridOrder.forEach((row, rowIndex) => {
+        row.forEach((characterId, colIndex) => {
+            const character = characterMap.find(c => c.id === characterId);
+            if (character) {
+                const paper = colIndex % 2 === 0
+                    ? 'pictures/refs/marks/deliriumpaper.png'
+                    : 'pictures/refs/marks/Tdeliriumpaper.png';
+
+                advancedgraphics.innerHTML += `
+                    <div class="completion" style="grid-column: ${colIndex + 1}; grid-row: ${rowIndex + 1};">
+                        <img class='sheet' id='paper-character-${character.id}' src="${paper}">
+                        <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
+                        ${markMap.map(mark => `
+                            <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
+                        `).join('')}
+                    </div>`;
+            }
+        });
+    });
+}
 
 function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, value, deliriumMap, taintedDeliriumMap, fullMap) {
     if (value) {
@@ -283,10 +276,6 @@ function generateDescriptions(characterDescriptions, markDescriptions) {
 
 function getCharacterProgress() {
     return characterProgress;
-};
-
-function getChallengeProgress() {
-    return challengeProgress;
 };
 
 function generateInfoBox() {
