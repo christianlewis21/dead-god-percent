@@ -5,10 +5,6 @@ let characterProgress = 441;
 
 const simpleButton = document.getElementById("viewtoggle");
 
-const infoDiv = document.querySelector('.info');
-const infobar = document.getElementById('infobar')
-const infoBarDescription = document.getElementById('infobardescription')
-
 const characterButton = document.getElementById('characterbutton')
 const advancedgraphics = document.getElementById("advancedgraphics");
 const characterDescriptions = document.getElementById('characterdescriptions')
@@ -26,18 +22,9 @@ fetch('achievements.json')
 
 document.addEventListener("DOMContentLoaded", function() {
     generateSheets(characterMap, markMap);
-    checkCharacterUnlocks(characterAchievementMap, markAchievementMap, true, deliriumMap, taintedDeliriumMap, fullMap)
+    checkCharacterUnlocks(characterAchievementMap, markAchievementMap, deliriumMap, taintedDeliriumMap, fullMap)
     generateDescriptions(characterDescriptions, markDescriptions)
-    // setTimeout(generateCharacterBar, 500);
-});
-
-infobar.addEventListener('click', function() {
-    generateInfoBox();
-    infoBarDescription.classList.add('show');
-});
-
-infoBarDescription.addEventListener('click', function() {
-    infoBarDescription.classList.remove('show');
+    setTimeout(generateCharacterBar, 500);
 });
 
 function generateSheets(characterMap, markMap) {
@@ -63,70 +50,66 @@ function generateSheets(characterMap, markMap) {
                     <div class="completion" style="grid-column: ${colIndex + 1}; grid-row: ${rowIndex + 1};">
                         <img class='sheet' id='paper-character-${character.id}' src="${paper}">
                         <img class='character' id="character-${character.id}" src="pictures/refs/characters/${character.name}.png">
-                        ${markMap.map(mark => `
-                            <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
-                        `).join('')}
+                        ${markMap
+                            .filter(mark => !(mark.id === 12 && character.id > 17))
+                            .map(mark => `
+                                <img class='mark mark-${character.id}-${mark.id}' id='mark-${character.id}-${mark.id}' src="pictures/refs/marks/${mark.name}.png">
+                            `).join('')}
                     </div>`;
             }
         });
     });
-}
+};
 
-function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, value, deliriumMap, taintedDeliriumMap, fullMap) {
-    if (value) {
-        for (const [position, characterId] of Object.entries(characterAchievementMap)) {
+function checkCharacterUnlocks(characterAchievementMap, markAchievementMap, deliriumMap, taintedDeliriumMap, fullMap) {
+    for (const [position, characterId] of Object.entries(characterAchievementMap)) {
+        if (AchievementMap[position] === false) {
+            document.getElementById(characterId).classList.add('grayscale');
+            characterProgress--;
+        }
+    }
+
+    for (let i = 1; i <= 34; i++) {
+        for (const [position, markId] of Object.entries(markAchievementMap[i])) {
             if (AchievementMap[position] === false) {
-                document.getElementById(characterId).classList.add('grayscale');
+                document.getElementById(markId).classList.add('grayscale');
+                characterProgress--;
+            }
+        }        
+    }
+    for (let i = 18; i <= 34; i++) {     
+        for (let j = 4; j > 1; j--) {
+            if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
+                document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
                 characterProgress--;
             }
         }
-    
-        for (let i = 1; i <= 34; i++) {
-            for (const [position, markId] of Object.entries(markAchievementMap[i])) {
-                if (AchievementMap[position] === false) {
-                    document.getElementById(markId).classList.add('grayscale');
-                    characterProgress--;
-                }
-            }        
+
+        if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
+            document.getElementById(`mark-${i}-7`).classList.add('grayscale');
+            characterProgress--;
         }
-        for (let i = 18; i <= 34; i++) {     
-            for (let j = 4; j > 1; j--) {
-                if (document.getElementById(`mark-${i}-5`).classList.contains('grayscale')) {
-                    document.getElementById(`mark-${i}-${j}`).classList.add('grayscale');
-                    characterProgress--;
-                }
-            }
-    
-            if (document.getElementById(`mark-${i}-8`).classList.contains('grayscale')) {
-                document.getElementById(`mark-${i}-7`).classList.add('grayscale');
-                characterProgress--;
-            }
+    }
+    for (const [position, paperId] of Object.entries(deliriumMap)) {
+        if (!AchievementMap[position]) {
+            document.getElementById(`paper-${paperId}`).classList.add('grayscale');
+            characterProgress--;
+        } 
+    }
+    for (const [position, characterId] of Object.entries(fullMap)) {
+        if (AchievementMap[position]) {
+            document.getElementById(characterId).classList.add('golden');
         }
-        for (const [position, paperId] of Object.entries(deliriumMap)) {
+        else {
+            characterProgress--;
+        }
+    }
+    for (const [position, paperId] of Object.entries(taintedDeliriumMap)) {
             if (!AchievementMap[position]) {
                 document.getElementById(`paper-${paperId}`).classList.add('grayscale');
                 characterProgress--;
             } 
         }
-        let count = 0
-        for (const [position, characterId] of Object.entries(fullMap)) {
-            if (AchievementMap[position]) {
-                document.getElementById(characterId).classList.add('golden');
-                count++;
-            }
-            else {
-                characterProgress--;
-            }
-        }
-    }
-    else {
-        for (const [position, paperId] of Object.entries(taintedDeliriumMap)) {
-            if (!AchievementMap[position]) {
-                document.getElementById(`paper-${paperId}`).classList.add('grayscale');
-                characterProgress--;
-            } 
-        }
-    }
 };
 
 function generateDescriptions(characterDescriptions, markDescriptions) {
@@ -316,7 +299,7 @@ function generateInfoBox() {
             }
         }
     }
-}
+};
 
 const styles = `
   ${Array.from({ length: 34 }, (_, i) => i + 1).map(i => `

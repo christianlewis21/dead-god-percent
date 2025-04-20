@@ -16,8 +16,8 @@ fetch('achievements.json')
     .then(newData => {
         achievementsData = newData;
         generateChallengeProgress(challengeMap);
-        getChallenge()
-        generateChallengeBar()
+        getChallenge();
+        setTimeout(generateChallengeBar, 500);
     })
 
 function generateChallengeProgress(challengeMap) {

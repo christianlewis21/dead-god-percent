@@ -12,7 +12,9 @@ function generateCharacterBar() {
             i++;
             width += change
             bar.style.width = width + "%";
-            bar.innerHTML = i + "/441"
+            if (width >= 100) {
+                bar.style.backgroundColor = "#f7d401";
+            }
         }
     }
 };
@@ -31,6 +33,9 @@ function generateChallengeBar() {
             i++;
             width += change
             bar.style.width = width + "%";
+            if (width >= 100) {
+                bar.style.backgroundColor = "#f7d401";
+            }
         }
     }
 };
